@@ -15,7 +15,33 @@
     <!--
     <UnoFeatures></UnoFeatures>
     -->
+
+    <PackageId>MZikmund.Toolkit.WinUI</PackageId>
+    <AssemblyName>MZikmund.Toolkit.WinUI</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <PackageTags>winui,app,crossplatform,toolkit</PackageTags>
+    <RepositoryUrl>https://github.com/MartinZikmund/mzikmund-toolkit</RepositoryUrl>
+    <Authors>Martin Zikmund</Authors>
+    <Company>Martin Zikmund</Company>
+    <Copyright>Martin Zikmund</Copyright>
+    <PackageProjectUrl></PackageProjectUrl>
+    <Description>Reusable services and tools for cross-platform apps made with Uno Platform and WinUI.</Description>
+    <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <Nullable>enable</Nullable>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
     <!--
