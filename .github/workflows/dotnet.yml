@@ -20,6 +20,11 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+    - name: Install GitVersion
+      run: dotnet tool install --global GitVersion.Tool
+    - name: Generate Version
+      run: gitversion /output json /showvariable FullSemVer
+      id: gitversion
     - name: Restore workloads
       run: dotnet workload restore src/MZikmund.Toolkit.sln
     - name: Restore dependencies
