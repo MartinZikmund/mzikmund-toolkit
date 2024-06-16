@@ -20,16 +20,26 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 8.0.x
+        cache: true
     - name: Install GitVersion
       run: dotnet tool install --global GitVersion.Tool
+    - name: Add .NET tools to PATH
+      run: echo "::add-path::$(echo $HOME/.dotnet/tools)"
     - name: Generate Version
-      run: gitversion /output json /showvariable FullSemVer
       id: gitversion
+      run: gitversion /output json /showvariable FullSemVer
     - name: Restore workloads
       run: dotnet workload restore src/MZikmund.Toolkit.sln
     - name: Restore dependencies
-      run: dotnet restore src/MZikmund.Toolkit.sln
+      run: dotnet restore src/MZikmund.Toolkit.sln --locked-mode
     - name: Build
-      run: dotnet build --no-restore src/MZikmund.Toolkit.sln
+      run: dotnet build --no-restore src/MZikmund.Toolkit.sln /p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
+    # - name: Pack
+    #   run: dotnet pack src/MZikmund.Toolkit.sln
+    - name: Publish artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: nuget-packages
+        path: src/**/*.nupkg,src/**/*.snupkg
