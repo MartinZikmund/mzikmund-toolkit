@@ -7,7 +7,7 @@ branches:
     regex: ^main$
     tag: dev
     increment: Minor
-    is-source-branch-for: ['beta', 'stable']
+    is-source-branch-for: ['stable']
 
   pull-request:
     regex: ^(pull|pull\-requests|pr)[/-]
