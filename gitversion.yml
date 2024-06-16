@@ -1,0 +1,38 @@
+assembly-versioning-scheme: MajorMinorPatch
+mode: Mainline
+
+branches:
+  main:
+    mode: ContinuousDeployment
+    regex: ^main$
+    tag: dev
+    increment: Minor
+    is-source-branch-for: ['beta', 'stable']
+
+  pull-request:
+    regex: ^(pull|pull\-requests|pr)[/-]
+    mode: ContinuousDeployment
+    tag: 'PullRequest'
+    tag-number-pattern: '[/-](?<number>\d+)[-/]'
+    increment: Minor # use minor to avoid expensive commit search
+
+  stable:
+    regex: ^release/stable/.*
+    tag: ''
+    increment: Patch
+    source-branches: ['master']
+    is-mainline: true
+
+  dev:
+    mode: ContinuousDeployment
+    regex: ^dev/.*?/(.*?)
+    tag: dev.{BranchName}
+    source-branches: ['main', 'stable']
+    increment: none
+
+  release:
+    # disable default release branch
+    regex: ignore
+
+ignore:
+  sha: []
