@@ -6,7 +6,7 @@ branches:
     mode: ContinuousDeployment
     regex: ^main$
     tag: dev
-    increment: Minor
+    increment: Patch
     is-source-branch-for: ['stable']
 
   pull-request:
@@ -14,7 +14,7 @@ branches:
     mode: ContinuousDeployment
     tag: 'PullRequest'
     tag-number-pattern: '[/-](?<number>\d+)[-/]'
-    increment: Minor # use minor to avoid expensive commit search
+    increment: None # use minor to avoid expensive commit search
 
   stable:
     regex: ^release/stable/.*
