@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
@@ -32,7 +34,7 @@ jobs:
     - name: Restore workloads
       run: dotnet workload restore src/MZikmund.Toolkit.sln
     - name: Restore dependencies
-      run: dotnet restore src/MZikmund.Toolkit.sln --locked-mode
+      run: dotnet restore src/MZikmund.Toolkit.sln
     - name: Build
       run: dotnet build --no-restore src/MZikmund.Toolkit.sln /p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
     # - name: Test
