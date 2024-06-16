@@ -6,15 +6,15 @@ branches:
     mode: ContinuousDeployment
     regex: ^main$
     tag: dev
-    increment: Minor
-    is-source-branch-for: ['beta', 'stable']
+    increment: Patch
+    is-source-branch-for: ['stable']
 
   pull-request:
     regex: ^(pull|pull\-requests|pr)[/-]
     mode: ContinuousDeployment
     tag: 'PullRequest'
     tag-number-pattern: '[/-](?<number>\d+)[-/]'
-    increment: Minor # use minor to avoid expensive commit search
+    increment: None # use minor to avoid expensive commit search
 
   stable:
     regex: ^release/stable/.*
