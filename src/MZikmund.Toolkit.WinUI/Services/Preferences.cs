@@ -1,113 +1,146 @@
-﻿//using System.Text.Json;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Text.Json;
 
-//namespace MZikmund.Toolkit.WinUI.Services;
+namespace MZikmund.Toolkit.WinUI.Services;
 
-//public class Preferences : IPreferences
-//{
-//    private readonly Dictionary<string, object?> _preferenceCache = new Dictionary<string, object?>();
+/// <summary>
+/// Handles application preferences.
+/// </summary>
+public class Preferences : IPreferences
+{
+    private readonly Dictionary<string, object> _preferenceCache = new();
 
-//    private readonly ApplicationDataContainer _container = ApplicationData.Current.LocalSettings;
+    private readonly ApplicationDataContainer _container = ApplicationData.Current.LocalSettings;
 
-//    public T Get<T>(string key, Func<T>? defaultValueBuilder = null)
-//    {
-//        if (!_preferenceCache.TryGetValue(key, out var boxedValue))
-//        {
-//            // retrieve directly from settings and cache
-//            if (!TryGetFromContainer<T>(key, out var value))
-//            {
-//                value = defaultValueBuilder?.Invoke();
-//            }
-//            _preferenceCache[key] = value;
-//            else
-//            {
-//                return default;
-//            }
-//        }
+    /// <summary>
+    /// Retrieves a plain setting from the preferences.
+    /// </summary>
+    /// <typeparam name="T">Type.</typeparam>
+    /// <param name="key">Key.</param>
+    /// <param name="defaultValue">Default value.</param>
+    /// <returns>Value from settings or default value.</returns>
+    public T Get<T>(string key, T defaultValue)
+    {
+        if (TryGetFromCache<T>(key, out var cachedValue))
+        {
+            return cachedValue;
+        }
 
-//        return (T)boxedValue;
-//    }
+        if (TryGetFromContainer<T>(key, out var value) && value is { })
+        {
+            _preferenceCache[key] = value;
+            return value;
+        }
 
-//    public T? GetComplex<T>(string key, Func<T>? defaultValueBuilder = null)
-//    {
-//        if (!_preferenceCache.TryGetValue(key, out var boxedValue))
-//        {
-//            // retrieve directly from settings and cache
-//            var value = GetComplexFromContainer(key, defaultValueBuilder);
-//            _preferenceCache.Add(key, value!);
-//            return value;
-//        }
-//        else
-//        {
-//            return (T?)boxedValue;
-//        }
-//    }
+        if (defaultValue is { })
+        {
+            _preferenceCache[key] = defaultValue;
+        }
 
-//    public void SetComplex<T>(string key, T value)
-//    {
-//        var serializedValue = JsonSerializer.Serialize(value);
-//        _container.Values[key] = serializedValue;
-//        _preferenceCache[key] = value!;
-//    }
+        return defaultValue;
+    }
 
-//    public void Set<T>(string key, T value)
-//    {
-//        _preferenceCache[key] = value!;
-//    }
+    /// <summary>
+    /// Gets a complex setting from the preferences.
+    /// Value is stored as string and deserialized.
+    /// </summary>
+    /// <typeparam name="T">Type.</typeparam>
+    /// <param name="key">Key.</param>
+    /// <returns>Complex setting.</returns>
+    public T? GetComplex<T>(string key)
+    {
+        if (TryGetFromCache<T>(key, out var cachedValue))
+        {
+            return cachedValue;
+        }
 
-//    private bool TryGetFromContainer<T>(string key, out T? value)
-//    {
-//        if (_container.Values.TryGetValue(key, out var objectValue))
-//        {
-//            //get existing
-//            try
-//            {
-//                value = (T)objectValue;
-//                return true;
-//            }
-//            catch
-//            {
-//#if DEBUG
-//                throw new InvalidOperationException("Value stored in the setting does not match expected type.");
-//#else
-//				//invalid value, remove
-//				container.Values.Remove(key);
-//#endif
-//            }
-//        }
+        if (TryGetFromContainer<string>(key, out var value))
+        {
+            var deserializedValue = JsonSerializer.Deserialize<T>(value);
+            if (deserializedValue is { })
+            {
+                _preferenceCache[key] = deserializedValue;
+            }
+            return deserializedValue;
+        }
 
-//        value = default;
-//        return false;
-//    }
+        return default;
+    }
 
-//    private T? GetComplexFromContainer<T>(string key, Func<T>? defaultValueBuilder = null)
-//    {
-//        if (_container.Values.TryGetValue(key, out var value))
-//        {
-//            //get existing
-//            try
-//            {
-//                var serialized = (string)value;
-//                return JsonSerializer.Deserialize<T>(serialized);
-//            }
-//            catch
-//            {
-//#if DEBUG
-//                throw new InvalidOperationException("Value stored in the setting does not match expected type.");
-//#else
-//				//invalid value, remove
-//				container.Values.Remove(key);
-//#endif
-//            }
-//        }
-//        if (defaultValueBuilder == null)
-//        {
-//            return default!;
-//        }
-//        else
-//        {
-//            return defaultValueBuilder();
-//        }
-//    }
+    /// <summary>
+    /// Sets a plain setting in the preferences.
+    /// </summary>
+    /// <typeparam name="T">Type.</typeparam>
+    /// <param name="key">Key.</param>
+    /// <param name="value">Value.</param>
+    public void Set<T>(string key, T? value)
+    {
+        if (value is null)
+        {
+            _preferenceCache.Remove(key);
+            _container.Values.Remove(key);
+            return;
+        }
 
-//    private bool TryGetSetting(string key, out object? value) => _container.Values.TryGetValue(key, out value);
-//}
+        _container.Values[key] = value;
+        _preferenceCache[key] = value!;
+    }
+
+    /// <summary>
+    /// Sets a complex setting in the preferences.
+    /// Value is serialized to string.
+    /// </summary>
+    /// <typeparam name="T">Type.</typeparam>
+    /// <param name="key">Key.</param>
+    /// <param name="value">Value.</param>
+    public void SetComplex<T>(string key, T? value)
+    {
+        if (value is null)
+        {
+            _preferenceCache.Remove(key);
+            _container.Values.Remove(key);
+            return;
+        }
+
+        var serializedValue = JsonSerializer.Serialize(value);
+        _container.Values[key] = serializedValue;
+        _preferenceCache[key] = value;
+    }
+
+    private bool TryGetFromCache<T>(string key, [MaybeNullWhen(false)] out T value)
+    {
+        if (_preferenceCache.TryGetValue(key, out var boxedValue))
+        {
+            value = (T)boxedValue;
+            return true;
+        }
+
+        value = default;
+        return false;
+    }
+
+    private bool TryGetFromContainer<T>(string key, [MaybeNullWhen(false)] out T value)
+    {
+        if (_container.Values.TryGetValue(key, out var objectValue))
+        {
+            //get existing
+            try
+            {
+                value = (T)objectValue;
+                return true;
+            }
+            catch
+            {
+#if DEBUG
+                throw new InvalidOperationException("Value stored in the setting does not match expected type.");
+#else
+				//invalid value, remove
+				container.Values.Remove(key);
+#endif
+            }
+        }
+
+        value = default;
+        return false;
+    }
+}
