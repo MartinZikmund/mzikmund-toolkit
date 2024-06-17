@@ -1,4 +1,4 @@
-﻿namespace MZikmund.Services.Dialogs;
+﻿namespace MZikmund.Toolkit.WinUI.Services;
 
 internal record QueuedDialog(ContentDialog Dialog)
 {

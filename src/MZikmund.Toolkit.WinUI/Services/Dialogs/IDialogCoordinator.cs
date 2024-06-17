@@ -1,4 +1,4 @@
-﻿namespace MZikmund.Services.Dialogs;
+﻿namespace MZikmund.Toolkit.WinUI.Services;
 
 /// <summary>
 /// Allows coordination of content dialog display.

@@ -1,7 +1,4 @@
-﻿using EventCountdowns.Services.Navigation;
-using MZikmund.Toolkit.WinUI.Infrastructure;
-
-namespace MZikmund.Services.Dialogs;
+﻿namespace MZikmund.Toolkit.WinUI.Services;
 
 /// <summary>
 /// Allows coordination of content dialog display.
