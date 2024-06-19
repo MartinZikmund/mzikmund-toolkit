@@ -145,4 +145,26 @@ public class Preferences : IPreferences
         value = default;
         return false;
     }
+
+    /// <summary>
+    /// Retrieves a plain setting from the preferences.
+    /// </summary>
+    /// <typeparam name="T">Type.</typeparam>
+    /// <param name="key">Key.</param>
+    /// <param name="defaultValue">Default value.</param>
+    /// <returns>Value from settings or default value.</returns>
+    /// </summary>
+    public T Get<T>(string key, T defaultValue) => TryGet<T>(key, out var value) ?
+        value : defaultValue;
+
+    /// <summary>
+    /// Retrieves a complex setting from the preferences.
+    /// </summary>
+    /// <typeparam name="T">Type.</typeparam>
+    /// <param name="key">Key.</param>
+    /// <param name="defaultValue">Default value.</param>
+    /// <returns>Value from settings or default value.</returns>
+    /// </summary>
+    public T GetComplex<T>(string key, T defaultValue) => TryGetComplex<T>(key, out var value) ?
+        value : defaultValue;
 }
