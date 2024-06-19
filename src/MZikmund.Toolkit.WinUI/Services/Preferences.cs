@@ -17,27 +17,25 @@ public class Preferences : IPreferences
     /// </summary>
     /// <typeparam name="T">Type.</typeparam>
     /// <param name="key">Key.</param>
-    /// <param name="defaultValue">Default value.</param>
+    /// <param name="value">Value.</param>
     /// <returns>Value from settings or default value.</returns>
-    public T Get<T>(string key, T defaultValue)
+    public bool TryGet<T>(string key, [MaybeNullWhen(false)] out T value)
     {
         if (TryGetFromCache<T>(key, out var cachedValue))
         {
-            return cachedValue;
+            value = cachedValue;
+            return true;
         }
 
-        if (TryGetFromContainer<T>(key, out var value) && value is { })
+        if (TryGetFromContainer<T>(key, out var containerValue) && containerValue is { })
         {
-            _preferenceCache[key] = value;
-            return value;
+            _preferenceCache[key] = containerValue;
+            value = containerValue;
+            return true;
         }
 
-        if (defaultValue is { })
-        {
-            _preferenceCache[key] = defaultValue;
-        }
-
-        return defaultValue;
+        value = default;
+        return false;
     }
 
     /// <summary>
@@ -46,25 +44,29 @@ public class Preferences : IPreferences
     /// </summary>
     /// <typeparam name="T">Type.</typeparam>
     /// <param name="key">Key.</param>
+    /// <param name="value">Value.</param>
     /// <returns>Complex setting.</returns>
-    public T? GetComplex<T>(string key)
+    public bool TryGetComplex<T>(string key, [MaybeNullWhen(false)] out T value)
     {
         if (TryGetFromCache<T>(key, out var cachedValue))
         {
-            return cachedValue;
+            value = cachedValue;
+            return true;
         }
 
-        if (TryGetFromContainer<string>(key, out var value))
+        if (TryGetFromContainer<string>(key, out var containerValue) && containerValue is not null)
         {
-            var deserializedValue = JsonSerializer.Deserialize<T>(value);
+            var deserializedValue = JsonSerializer.Deserialize<T>(containerValue);
             if (deserializedValue is { })
             {
                 _preferenceCache[key] = deserializedValue;
+                value = deserializedValue;
+                return true;
             }
-            return deserializedValue;
         }
 
-        return default;
+        value = default;
+        return false;
     }
 
     /// <summary>

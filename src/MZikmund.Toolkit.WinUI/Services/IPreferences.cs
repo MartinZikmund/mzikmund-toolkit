@@ -1,4 +1,6 @@
-﻿namespace MZikmund.Toolkit.WinUI.Services;
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace MZikmund.Toolkit.WinUI.Services;
 
 /// <summary>
 /// Handles application preferences.
@@ -10,9 +12,9 @@ public interface IPreferences
     /// </summary>
     /// <typeparam name="T">Type.</typeparam>
     /// <param name="key">Key.</param>
-    /// <param name="defaultValue">Default value.</param>
+    /// <param name="value">Value.</param>
     /// <returns>Value from settings or default value.</returns>
-    T Get<T>(string key, T defaultValue);
+    bool TryGet<T>(string key, [MaybeNullWhen(false)] out T value);
 
     /// <summary>
     /// Sets a plain setting in the preferences.
@@ -28,8 +30,9 @@ public interface IPreferences
     /// </summary>
     /// <typeparam name="T">Type.</typeparam>
     /// <param name="key">Key.</param>
+    /// <param name="value">Value.</param>
     /// <returns>Complex setting.</returns>
-    T? GetComplex<T>(string key);
+    bool TryGetComplex<T>(string key, [MaybeNullWhen(false)] out T value);
 
     /// <summary>
     /// Sets a complex setting in the preferences.
