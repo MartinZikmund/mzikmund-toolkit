@@ -9,13 +9,6 @@ namespace MZikmund.Toolkit.WinUI.Dialogs;
 public sealed partial class ThirdPartySoftwareDialog : ContentDialog
 {
 	/// <summary>
-	/// Initializes a new instance of the <see cref="ThirdPartySoftwareDialog"/> class.
-	/// </summary>
-	public ThirdPartySoftwareDialog() : this(new List<PackageInfo>())
-	{
-	}
-
-	/// <summary>
 	/// Initializes a new instance of the <see cref="ThirdPartySoftwareDialog"/> class with the specified packages.
 	/// </summary>
 	/// <param name="packages">The list of third-party packages to display.</param>
