@@ -193,7 +193,7 @@ The project generates NuGet packages on every build:
 This project uses **GitVersion** with Mainline mode:
 - **Main branch:** Tagged as `dev` with patch increment
 - **Pull Requests:** Tagged as `PullRequest` with no increment
-- **Stable branches:** Use `release/stable/*` pattern
+- **Stable branches:** Use `release/stable/*` pattern (note: gitversion.yml references 'master' as source, but actual branch is 'main')
 - **Dev branches:** Use `dev/*` pattern with custom tag
 
 Configuration in `gitversion.yml` at repository root.
@@ -204,7 +204,7 @@ Configuration in `gitversion.yml` at repository root.
 - Microsoft.SourceLink.GitHub 8.0.0
 
 **SDK Dependencies:**
-- Uno.Sdk 5.2.132 (specified in `global.json`)
+- Uno.Sdk 5.2.132 (specified in `global.json` under `msbuild-sdks` section)
 - .NET 8 SDK (8.0.300 or compatible)
 
 **Workload Dependencies:**
