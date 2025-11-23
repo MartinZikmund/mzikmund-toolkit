@@ -3,7 +3,7 @@
     x:Class="MZikmund.Toolkit.WinUI.Dialogs.ThirdPartySoftwareDialog"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MZikmund.Toolkit.WinUI.Dialogs"
+    xmlns:abstractions="using:MZikmund.Toolkit.Abstractions"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     Title="Third Party Software"
     CloseButtonText="Close"
@@ -13,7 +13,7 @@
             <TextBlock Text="This application uses the following open source packages:" TextWrapping="Wrap" />
             <ItemsControl x:Name="PackagesList">
                 <ItemsControl.ItemTemplate>
-                    <DataTemplate x:DataType="local:PackageInfo">
+                    <DataTemplate x:DataType="abstractions:PackageInfo">
                         <StackPanel
                             Margin="0,8,0,0"
                             Orientation="Vertical"

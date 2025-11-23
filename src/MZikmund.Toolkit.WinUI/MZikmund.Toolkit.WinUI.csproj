@@ -41,6 +41,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="../MZikmund.Toolkit.Abstractions/MZikmund.Toolkit.Abstractions.csproj" />
+  </ItemGroup>
+
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
     <!--
     If you encounter this error message:

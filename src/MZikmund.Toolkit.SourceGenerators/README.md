@@ -39,9 +39,9 @@ var dialog = new ThirdPartySoftwareDialog(GeneratedPackageInfo.GetPackages())
 await dialog.ShowAsync();
 ```
 
-The generator creates a `GeneratedPackageInfo` class in your application's root namespace (matching your assembly name) with:
-- `GetPackages()` method returning `List<PackageInfo>`
-- `PackageInfo` record with Name, Version, and Url properties
+The generator creates a `GeneratedPackageInfo` class in your application's root namespace (matching your assembly name) with a `GetPackages()` method returning `List<PackageInfo>`. 
+
+**Note:** You must also reference the `MZikmund.Toolkit.Abstractions` package in your project, as it contains the `PackageInfo` model used by the generated code.
 
 The dialog will display all detected third-party packages with links to their NuGet pages.
 

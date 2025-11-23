@@ -20,11 +20,18 @@ Source generators that enhance the toolkit functionality.
 **Features:**
 - `PackageInfoGenerator` - Automatically generates a list of third-party package dependencies at build time
 
+### MZikmund.Toolkit.Abstractions
+
+Shared abstractions and models used across the toolkit.
+
+**Features:**
+- `PackageInfo` record - Model for third-party package information
+
 ## Using ThirdPartySoftwareDialog
 
 To display third-party software attribution in your app:
 
-1. Install the `MZikmund.Toolkit.WinUI` package
+1. Install the `MZikmund.Toolkit.WinUI` and `MZikmund.Toolkit.Abstractions` packages
 2. Enable the source generator in your `.csproj`:
 
 ```xml
@@ -46,7 +53,7 @@ var dialog = new ThirdPartySoftwareDialog(GeneratedPackageInfo.GetPackages())
 await dialog.ShowAsync();
 ```
 
-The source generator will create a `GeneratedPackageInfo` class in your application's root namespace (same as the assembly name) with a `GetPackages()` method that returns the list of packages. The dialog will display all detected third-party packages with links to their NuGet pages.
+The source generator will create a `GeneratedPackageInfo` class in your application's root namespace (same as the assembly name) with a `GetPackages()` method that returns `List<PackageInfo>`. The dialog will display all detected third-party packages with links to their NuGet pages.
 
 ## Building
 
