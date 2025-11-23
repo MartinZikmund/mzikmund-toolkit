@@ -31,14 +31,19 @@ After enabling the generator, you can use the `ThirdPartySoftwareDialog` to disp
 ```csharp
 using MZikmund.Toolkit.WinUI.Dialogs;
 
-var dialog = new ThirdPartySoftwareDialog
+// The generator creates GeneratedPackageInfo in your app's root namespace
+var dialog = new ThirdPartySoftwareDialog(GeneratedPackageInfo.GetPackages())
 {
     XamlRoot = this.Content.XamlRoot
 };
 await dialog.ShowAsync();
 ```
 
-The dialog will automatically display all detected third-party packages with links to their NuGet pages.
+The generator creates a `GeneratedPackageInfo` class in your application's root namespace (matching your assembly name) with:
+- `GetPackages()` method returning `List<PackageInfo>`
+- `PackageInfo` record with Name, Version, and Url properties
+
+The dialog will display all detected third-party packages with links to their NuGet pages.
 
 ### Customization
 

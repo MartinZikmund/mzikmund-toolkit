@@ -10,22 +10,18 @@ public sealed partial class ThirdPartySoftwareDialog : ContentDialog
 	/// <summary>
 	/// Initializes a new instance of the <see cref="ThirdPartySoftwareDialog"/> class.
 	/// </summary>
-	public ThirdPartySoftwareDialog()
+	public ThirdPartySoftwareDialog() : this(new List<PackageInfo>())
 	{
-		this.InitializeComponent();
-
-		// Initialize the list of packages from generated source if available
-		// When EnableThirdPartySoftwareGenerator is false, use an empty list
-		PackagesList.ItemsSource = GetPackages();
 	}
 
-	private static List<PackageInfo> GetPackages()
+	/// <summary>
+	/// Initializes a new instance of the <see cref="ThirdPartySoftwareDialog"/> class with the specified packages.
+	/// </summary>
+	/// <param name="packages">The list of third-party packages to display.</param>
+	public ThirdPartySoftwareDialog(IEnumerable<PackageInfo> packages)
 	{
-#if ENABLE_THIRD_PARTY_SOFTWARE_GENERATOR
-		return GeneratedPackageInfo.GetPackages();
-#else
-		return new List<PackageInfo>();
-#endif
+		this.InitializeComponent();
+		PackagesList.ItemsSource = packages;
 	}
 }
 
