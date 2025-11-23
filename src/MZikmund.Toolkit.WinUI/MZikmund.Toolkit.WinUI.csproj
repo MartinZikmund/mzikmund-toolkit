@@ -55,4 +55,21 @@
     <!-- <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" RuntimeFrameworkVersion="10.0.22621.28" />
     <FrameworkReference Update="Microsoft.Windows.SDK.NET.Ref" TargetingPackVersion="10.0.22621.28" /> -->
   </ItemGroup>
+
+  <!-- Source generator for third-party software attribution dialog -->
+  <PropertyGroup>
+    <EnableThirdPartySoftwareGenerator Condition="'$(EnableThirdPartySoftwareGenerator)' == ''">false</EnableThirdPartySoftwareGenerator>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(EnableThirdPartySoftwareGenerator)' == 'true'">
+    <DefineConstants>$(DefineConstants);ENABLE_THIRD_PARTY_SOFTWARE_GENERATOR</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(EnableThirdPartySoftwareGenerator)' == 'true'">
+    <ProjectReference Include="../MZikmund.Toolkit.SourceGenerators/MZikmund.Toolkit.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(EnableThirdPartySoftwareGenerator)' == 'true'">
+    <AdditionalFiles Include="../Directory.Packages.props" />
+  </ItemGroup>
 </Project>
