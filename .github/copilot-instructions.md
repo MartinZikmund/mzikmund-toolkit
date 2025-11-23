@@ -32,6 +32,7 @@ This is a **cross-platform .NET library** that provides reusable services and to
    - Installs Android workload (required for `net8.0-android` target)
    - Installs WASM tools (required for `net8.0-browserwasm` target)
    - **Important:** Run this from the `src` directory where `global.json` is located to ensure .NET 8 SDK is used
+   - **Note:** iOS/macOS/Windows targets require their respective operating systems. On Linux, only `net8.0`, `net8.0-android`, `net8.0-browserwasm`, and `net8.0-desktop` targets build. The CI workflow uses Windows to support all targets.
 
 3. **Restore NuGet dependencies:**
    ```bash
