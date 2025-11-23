@@ -1,6 +1,7 @@
 using System.Text;
 using System.Xml.Linq;
 using Microsoft.CodeAnalysis;
+using Microsoft.CodeAnalysis.Diagnostics;
 using Microsoft.CodeAnalysis.Text;
 
 namespace MZikmund.Toolkit.SourceGenerators;
@@ -15,12 +16,18 @@ public class PackageInfoGenerator : IIncrementalGenerator
 			.Where(file => file.Path.EndsWith("Directory.Packages.props"))
 			.Collect();
 
-		var compilationAndProps = context.CompilationProvider.Combine(packagesPropsFile);
+		// Get MSBuild properties to detect custom RootNamespace
+		var configOptions = context.AnalyzerConfigOptionsProvider
+			.Select((provider, _) => provider.GlobalOptions);
+
+		var compilationAndPropsAndConfig = context.CompilationProvider
+			.Combine(packagesPropsFile)
+			.Combine(configOptions);
 
 		// Generate the source code
-		context.RegisterSourceOutput(compilationAndProps, (spc, source) =>
+		context.RegisterSourceOutput(compilationAndPropsAndConfig, (spc, source) =>
 		{
-			var (compilation, propsFiles) = source;
+			var ((compilation, propsFiles), globalOptions) = source;
 			var packages = ExtractPackagesFromMetadata(compilation);
 
 			if (packages.Length == 0 && propsFiles.Length > 0)
@@ -28,11 +35,24 @@ public class PackageInfoGenerator : IIncrementalGenerator
 				packages = ParsePackagesProps(propsFiles[0]);
 			}
 
-			// Use the assembly name as the namespace (which is typically the root namespace)
-			var rootNamespace = compilation.AssemblyName ?? "Application";
+			// Try to get custom RootNamespace from MSBuild properties, fallback to assembly name
+			var rootNamespace = GetRootNamespace(globalOptions, compilation);
 			var sourceCode = GenerateSource(packages, rootNamespace);
 			spc.AddSource("GeneratedPackageInfo.g.cs", SourceText.From(sourceCode, Encoding.UTF8));
 		});
+	}
+
+	private static string GetRootNamespace(AnalyzerConfigOptions globalOptions, Compilation compilation)
+	{
+		// Try to get RootNamespace from MSBuild properties
+		if (globalOptions.TryGetValue("build_property.RootNamespace", out var rootNamespace) 
+			&& !string.IsNullOrEmpty(rootNamespace))
+		{
+			return rootNamespace;
+		}
+
+		// Fallback to assembly name
+		return compilation.AssemblyName ?? "Application";
 	}
 
 	private static PackageInfo[] ParsePackagesProps(AdditionalText file)
