@@ -23,7 +23,7 @@ public class PackageInfoGenerator : IIncrementalGenerator
 			var (compilation, propsFiles) = source;
 			var packages = ExtractPackagesFromMetadata(compilation);
 
-			if (packages.Length == 0)
+			if (packages.Length == 0 && propsFiles.Length > 0)
 			{
 				packages = ParsePackagesProps(propsFiles[0]);
 			}
@@ -69,9 +69,15 @@ public class PackageInfoGenerator : IIncrementalGenerator
 				}
 			}
 		}
-		catch
+		catch (System.Xml.XmlException)
 		{
-			// If parsing fails, return empty list
+			// If XML parsing fails, return empty list
+			// This is expected if the file is not a valid XML document
+		}
+		catch (System.Exception)
+		{
+			// For any other unexpected errors, return empty list
+			// Source generators should not throw exceptions
 		}
 
 		return packages.ToArray();
