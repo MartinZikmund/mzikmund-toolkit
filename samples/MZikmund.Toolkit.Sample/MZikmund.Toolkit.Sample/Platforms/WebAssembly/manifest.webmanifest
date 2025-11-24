@@ -1,0 +1,10 @@
+{
+  "background_color": "#ffffff",
+  "description": "MZikmund.Toolkit.Sample",
+  "display": "standalone",
+  "name": "MZikmund.Toolkit.Sample",
+  "short_name": "MZikmund.Toolkit.Sample",
+  "start_url": "/index.html",
+  "theme_color": "#ffffff",
+  "scope": "/"
+}

@@ -1,0 +1,37 @@
+<Project Sdk="Uno.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net10.0-android;net10.0-ios;net10.0-maccatalyst;net10.0-browserwasm;net10.0-windows10.0.19041;net10.0-desktop</TargetFrameworks>
+
+    <OutputType>Exe</OutputType>
+    <UnoSingleProject>true</UnoSingleProject>
+
+    <!-- Display name -->
+    <ApplicationTitle>MZikmund.Toolkit.Sample</ApplicationTitle>
+    <!-- App Identifier -->
+    <ApplicationId>com.companyname.mzikmund-toolkit-sample</ApplicationId>
+    <ApplicationIdGuid>6B40D4A6-F89A-4E74-8F6A-8C8D8E8F8A8B</ApplicationIdGuid>
+    <!-- Versions -->
+    <ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+    <ApplicationVersion>1</ApplicationVersion>
+    <!-- Package Publisher -->
+    <ApplicationPublisher>MZikmund.Toolkit.Sample</ApplicationPublisher>
+    <!-- Package Description -->
+    <Description>MZikmund.Toolkit.Sample powered by Uno Platform.</Description>
+
+    <!--
+      UnoFeatures are used to quickly add and manage features enabled for your app.
+      https://aka.platform.uno/singleproject-features
+    -->
+    <UnoFeatures>
+    </UnoFeatures>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\src\MZikmund.Toolkit.WinUI\MZikmund.Toolkit.WinUI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">
+    <PackageReference Include="Xamarin.AndroidX.Core.SplashScreen" />
+  </ItemGroup>
+
+</Project>
