@@ -7,7 +7,7 @@ This is a **cross-platform .NET library** that provides reusable services and to
 **Repository Stats:**
 - Primary Language: C# (.NET 8)
 - Project Type: NuGet library package
-- Framework: Uno.Sdk 5.2.132
+- Framework: Uno.Sdk 6.0
 - Target Frameworks: `net8.0`, `net8.0-ios`, `net8.0-maccatalyst`, `net8.0-android`, `net8.0-windows10.0.19041`, `net8.0-browserwasm`, `net8.0-desktop`
 - Single Project: `MZikmund.Toolkit.WinUI` (library only, no test projects)
 
@@ -204,7 +204,7 @@ Configuration in `gitversion.yml` at repository root.
 - Microsoft.SourceLink.GitHub 8.0.0
 
 **SDK Dependencies:**
-- Uno.Sdk 5.2.132 (specified in `global.json` under `msbuild-sdks` section)
+- Uno.Sdk 6.0 (specified in `global.json` under `msbuild-sdks` section)
 - .NET 8 SDK (8.0.300 or compatible)
 
 **Workload Dependencies:**
