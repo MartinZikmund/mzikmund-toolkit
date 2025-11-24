@@ -27,6 +27,14 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
+    "MZikmund.Toolkit.Sample (WinAppSDK Unpackaged)": {
+      "commandName": "Project",
+      "compatibleTargetFramework": "windows"
+    },
+    "MZikmund.Toolkit.Sample (WinAppSDK Packaged)": {
+      "commandName": "MsixPackage",
+      "compatibleTargetFramework": "windows"
+    },
     "MZikmund.Toolkit.Sample (Desktop)": {
       "commandName": "Project",
       "compatibleTargetFramework": "desktop"
