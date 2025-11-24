@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    
+    <PackageId>MZikmund.Toolkit.Abstractions</PackageId>
+    <AssemblyName>MZikmund.Toolkit.Abstractions</AssemblyName>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <PackageTags>winui,app,crossplatform,toolkit,abstractions</PackageTags>
+    <RepositoryUrl>https://github.com/MartinZikmund/mzikmund-toolkit</RepositoryUrl>
+    <Authors>Martin Zikmund</Authors>
+    <Company>Martin Zikmund</Company>
+    <Copyright>Martin Zikmund</Copyright>
+    <Description>Shared abstractions and models for MZikmund.Toolkit.</Description>
+    <IsPackable>true</IsPackable>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
