@@ -5,17 +5,17 @@
 This is a **cross-platform .NET library** that provides reusable services and tools for applications built with **Uno Platform** and **WinUI 3**. The toolkit is designed to work across multiple platforms including Windows, Android, iOS, macOS (Catalyst), WebAssembly (WASM), and Desktop (Skia).
 
 **Repository Stats:**
-- Primary Language: C# (.NET 8)
+- Primary Language: C# (.NET 10)
 - Project Type: NuGet library package
 - Framework: Uno.Sdk 6.0
-- Target Frameworks: `net8.0`, `net8.0-ios`, `net8.0-maccatalyst`, `net8.0-android`, `net8.0-windows10.0.19041`, `net8.0-browserwasm`, `net8.0-desktop`
+- Target Frameworks: `net10.0`, `net10.0-ios`, `net10.0-maccatalyst`, `net10.0-android`, `net10.0-windows10.0.19041`, `net10.0-browserwasm`, `net10.0-desktop`
 - Single Project: `MZikmund.Toolkit.WinUI` (library only, no test projects)
 
 ## Build Instructions
 
 ### Prerequisites
 
-**CRITICAL:** This project MUST be built with **.NET 8 SDK** (specifically 8.0.300 or compatible) as specified in `src/global.json`. Using .NET 9 or .NET 10 SDK will cause build errors due to workload compatibility issues with Android targets.
+**CRITICAL:** This project MUST be built with **.NET 10 SDK** (specifically 10.0.100 or compatible) as specified in `src/global.json`.
 
 ### Build Steps (ALWAYS FOLLOW THIS ORDER)
 
@@ -29,17 +29,17 @@ This is a **cross-platform .NET library** that provides reusable services and to
    dotnet workload restore MZikmund.Toolkit.sln
    ```
    - Takes 60-120 seconds
-   - Installs Android workload (required for `net8.0-android` target)
-   - Installs WASM tools (required for `net8.0-browserwasm` target)
-   - **Important:** Run this from the `src` directory where `global.json` is located to ensure .NET 8 SDK is used
-   - **Note:** iOS/macOS/Windows targets require their respective operating systems. On Linux, only `net8.0`, `net8.0-android`, `net8.0-browserwasm`, and `net8.0-desktop` targets build. The CI workflow uses Windows to support all targets.
+   - Installs Android workload (required for `net10.0-android` target)
+   - Installs WASM tools (required for `net10.0-browserwasm` target)
+   - **Important:** Run this from the `src` directory where `global.json` is located to ensure .NET 10 SDK is used
+   - **Note:** iOS/macOS/Windows targets require their respective operating systems. On Linux, only `net10.0`, `net10.0-android`, `net10.0-browserwasm`, and `net10.0-desktop` targets build. The CI workflow uses Windows to support all targets.
 
 3. **Restore NuGet dependencies:**
    ```bash
    dotnet restore MZikmund.Toolkit.sln
    ```
    - Takes 5-10 seconds
-   - You may see a warning about `net8.0-android` being out of support (NETSDK1202) - this is expected and can be ignored
+   - Takes 5-10 seconds
 
 4. **Build the solution:**
    ```bash
@@ -57,10 +57,10 @@ This is a **cross-platform .NET library** that provides reusable services and to
 
 ### Common Build Issues and Workarounds
 
-**Issue 1: NETSDK1202 Error - Android workload out of support**
-- **Symptom:** Build fails with "The workload 'net8.0-android' is out of support"
-- **Cause:** Using .NET 10 SDK instead of .NET 8
-- **Solution:** Always run commands from the `src` directory where `global.json` is located. The `global.json` file pins the SDK to 8.0.300
+**Issue 1: SDK Version Mismatch**
+- **Symptom:** Build fails with workload or SDK errors
+- **Cause:** Using incorrect SDK version
+- **Solution:** Always run commands from the `src` directory where `global.json` is located. The `global.json` file pins the SDK to 10.0.100
 
 **Issue 2: NETSDK1147 Error - Workloads not installed**
 - **Symptom:** Build fails with "To build this project, the following workloads must be installed: android"
@@ -87,7 +87,7 @@ The repository has two GitHub Actions workflows:
 
 **Build Steps (in order):**
 1. Checkout with full git history (`fetch-depth: 0`)
-2. Setup .NET 8.0.x SDK
+2. Setup .NET 10.0.x SDK
 3. Install GitVersion 5.x (for versioning)
 4. Determine version using GitVersion with `gitversion.yml` config
 5. Restore workloads: `dotnet workload restore src/MZikmund.Toolkit.sln`
@@ -120,7 +120,7 @@ The repository has two GitHub Actions workflows:
 │   ├── Directory.Build.props    # Shared MSBuild properties
 │   ├── Directory.Build.targets  # Shared MSBuild targets (empty)
 │   ├── Directory.Packages.props # Central Package Management
-│   ├── global.json              # CRITICAL: Pins SDK to 8.0.300
+│   ├── global.json              # CRITICAL: Pins SDK to 10.0.100
 │   ├── MZikmund.Toolkit.sln     # Solution file
 │   └── MZikmund.Toolkit.WinUI/  # Main library project
 │       ├── MZikmund.Toolkit.WinUI.csproj  # Project file (uses Uno.Sdk)
@@ -205,7 +205,7 @@ Configuration in `gitversion.yml` at repository root.
 
 **SDK Dependencies:**
 - Uno.Sdk 6.0 (specified in `global.json` under `msbuild-sdks` section)
-- .NET 8 SDK (8.0.300 or compatible)
+- .NET 10 SDK (10.0.100 or compatible)
 
 **Workload Dependencies:**
 - `android` workload (for Android target)
@@ -221,11 +221,11 @@ Two package ecosystems monitored:
 
 ## Important Notes for Code Changes
 
-1. **Always work from the `src` directory** when running dotnet commands to ensure .NET 8 SDK is used
+1. **Always work from the `src` directory** when running dotnet commands to ensure .NET 10 SDK is used
 2. **Do not add test projects** unless specifically requested - this is a library-only repository
 3. **Maintain cross-platform compatibility** - code must work on all target frameworks
 4. **Follow XML documentation standards** - public APIs must be documented
-5. **Do not modify `global.json`** - SDK version is intentionally pinned to 8.0.300
+5. **Do not modify `global.json`** - SDK version is intentionally pinned to 10.0.100
 6. **Preserve NoWarn suppressions** in Directory.Build.props - they address known issues
 7. **Package generation is automatic** - happens on every build via `GeneratePackageOnBuild`
 8. **Trust these instructions** - only search for additional information if something is unclear or these instructions prove incorrect
@@ -255,4 +255,4 @@ dotnet workload list
 
 ## Summary
 
-This is a small, focused cross-platform library for Uno Platform/WinUI apps. The build process is straightforward but requires .NET 8 SDK and proper workload installation. Always run commands from the `src` directory, follow the build order, and maintain cross-platform compatibility in any code changes.
+This is a small, focused cross-platform library for Uno Platform/WinUI apps. The build process is straightforward but requires .NET 10 SDK and proper workload installation. Always run commands from the `src` directory, follow the build order, and maintain cross-platform compatibility in any code changes.
