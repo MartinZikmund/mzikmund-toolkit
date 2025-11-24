@@ -137,7 +137,7 @@ public class Preferences : IPreferences
                 throw new InvalidOperationException("Value stored in the setting does not match expected type.");
 #else
 				//invalid value, remove
-				container.Values.Remove(key);
+				_container.Values.Remove(key);
 #endif
             }
         }
