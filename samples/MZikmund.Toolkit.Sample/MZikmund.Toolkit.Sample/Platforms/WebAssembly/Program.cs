@@ -1,18 +1,11 @@
-using Uno.UI.Hosting;
-
 namespace MZikmund.Toolkit.Sample;
 
 public class Program
 {
-    public static async Task Main(string[] args)
+    public static void Main(string[] args)
     {
         App.InitializeLogging();
 
-        var host = UnoPlatformHostBuilder.Create()
-            .App(() => new App())
-            .UseWebAssembly()
-            .Build();
-
-        await host.RunAsync();
+        Microsoft.UI.Xaml.Application.Start(_ => new App());
     }
 }

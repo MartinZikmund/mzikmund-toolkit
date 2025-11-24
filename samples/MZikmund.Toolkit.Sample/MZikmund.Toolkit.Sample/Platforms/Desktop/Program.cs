@@ -1,5 +1,3 @@
-using Uno.UI.Hosting;
-
 namespace MZikmund.Toolkit.Sample;
 
 internal class Program
@@ -9,14 +7,6 @@ internal class Program
     {
         App.InitializeLogging();
 
-        var host = UnoPlatformHostBuilder.Create()
-            .App(() => new App())
-            .UseX11()
-            .UseLinuxFrameBuffer()
-            .UseMacOS()
-            .UseWin32()
-            .Build();
-
-        host.Run();
+        Microsoft.UI.Xaml.Application.Start(_ => new App());
     }
 }
