@@ -2,6 +2,9 @@
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
+	<PackageVersion Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+	<PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.3" />
+	<PackageVersion Include="Microsoft.Extensions.Localization" Version="9.0.3" />
 	<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
   </ItemGroup>
 </Project>
