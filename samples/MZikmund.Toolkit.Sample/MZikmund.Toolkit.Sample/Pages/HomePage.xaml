@@ -37,6 +37,12 @@
 
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
+          <Run Text="Package Info Generator:" FontWeight="SemiBold" />
+          <Run Text=" Source generator that emits GeneratedPackageInfo.GetPackages() into the consuming assembly for About / Third-party software pages." />
+        </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
           <Run Text="ObservableCollection Merge:" FontWeight="SemiBold" />
           <Run Text=" MergeWith extension that synchronizes an ObservableCollection with a source list using minimal Insert/RemoveAt/Move operations." />
         </TextBlock>
