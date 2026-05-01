@@ -1,0 +1,98 @@
+<Page x:Class="MZikmund.Toolkit.Sample.NullEnumConvertersSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample"
+      xmlns:converters="using:MZikmund.Toolkit.WinUI.Converters">
+
+  <Page.Resources>
+    <converters:NullToVisibilityConverter x:Key="NullToVisibility" />
+    <converters:NullToVisibilityConverter x:Key="NullToVisibilityInverted" Invert="True" />
+    <converters:EnumLocalizationConverter x:Key="EnumLocalization" />
+  </Page.Resources>
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="Null + Enum Localization Converters"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="Two more XAML converters: NullToVisibilityConverter (toggle visibility based on null/non-null with optional Invert) and EnumLocalizationConverter (resolve enum values through ILocalizer)."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="NullToVisibilityConverter"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="Toggle the textbox content. The first message shows when content is non-empty; the second (Invert=True) shows when content is empty."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <TextBox x:Name="ContentInput" Header="Bound value" PlaceholderText="Type or clear" />
+
+          <TextBlock Text="✅ Has content!"
+                     Foreground="{ThemeResource SystemFillColorSuccessBrush}"
+                     Visibility="{Binding ElementName=ContentInput, Path=Text, Converter={StaticResource NullToVisibility}}" />
+
+          <TextBlock Text="⚠ Empty — please type something."
+                     Foreground="{ThemeResource SystemFillColorCautionBrush}"
+                     Visibility="{Binding ElementName=ContentInput, Path=Text, Converter={StaticResource NullToVisibilityInverted}}" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="EnumLocalizationConverter"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="The OrderStatus enum's three values are looked up through Localizer.Current using the convention OrderStatus_{ValueName}. Click a button to update the bound value, then try the language buttons to switch the active localizer."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Pending" Click="SetPending_Click" />
+            <Button Content="Shipped" Click="SetShipped_Click" />
+            <Button Content="Delivered" Click="SetDelivered_Click" />
+          </StackPanel>
+
+          <TextBlock x:Name="LocalizedStatus"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="English" Click="UseEnglish_Click" Style="{ThemeResource AccentButtonStyle}" />
+            <Button Content="Czech" Click="UseCzech_Click" />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>xmlns:converters="using:MZikmund.Toolkit.WinUI.Converters"</Run><LineBreak />
+            <LineBreak />
+            <Run>&lt;converters:NullToVisibilityConverter x:Key="NullToVis" /&gt;</Run><LineBreak />
+            <Run>&lt;converters:EnumLocalizationConverter x:Key="EnumLoc" /&gt;</Run><LineBreak />
+            <LineBreak />
+            <Run>&lt;TextBlock Visibility="{Binding User, Converter={StaticResource NullToVis}}" /&gt;</Run><LineBreak />
+            <Run>&lt;TextBlock Text="{Binding Status, Converter={StaticResource EnumLoc}}" /&gt;</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
