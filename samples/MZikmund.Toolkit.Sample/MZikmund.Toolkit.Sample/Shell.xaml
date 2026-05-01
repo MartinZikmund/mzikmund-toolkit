@@ -18,6 +18,8 @@
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
+      <NavigationViewItemHeader Content="Timing" />
+      <NavigationViewItem Content="Timer Factory" Tag="TimerFactory" Icon="Clock" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
     </NavigationView.MenuItems>

@@ -40,6 +40,12 @@
           <Run Text="ObservableCollection Merge:" FontWeight="SemiBold" />
           <Run Text=" MergeWith extension that synchronizes an ObservableCollection with a source list using minimal Insert/RemoveAt/Move operations." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Timer Factory:" FontWeight="SemiBold" />
+          <Run Text=" ITimerFactory + ITimer abstraction over DispatcherQueueTimer with a FakeTimerFactory for tests." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
