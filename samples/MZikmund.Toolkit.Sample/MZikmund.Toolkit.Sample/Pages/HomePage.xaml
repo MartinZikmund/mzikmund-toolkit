@@ -46,6 +46,12 @@
           <Run Text="Localizer:" FontWeight="SemiBold" />
           <Run Text=" ILocalizer abstraction with static Localizer.Current accessor and a {Localize} XAML markup extension." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Null + Enum Converters:" FontWeight="SemiBold" />
+          <Run Text=" NullToVisibilityConverter (with Invert) and EnumLocalizationConverter using the EnumType_Value convention." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
