@@ -52,6 +52,12 @@
           <Run Text="Window Shell:" FontWeight="SemiBold" />
           <Run Text=" IWindowShell + IWindowShellProvider abstraction for window-scoped infrastructure (theme manager, dialogs, navigation)." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Theme Manager:" FontWeight="SemiBold" />
+          <Run Text=" IThemeManager persists user theme choice (System / Light / Dark) and applies it to the shell." />
+        </TextBlock>
       </StackPanel>
       
       <TextBlock Text="Navigation"
