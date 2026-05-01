@@ -20,6 +20,7 @@
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
+      <NavigationViewItem Content="UIElement Services" Tag="UIElementServices" Icon="Link" />
       <NavigationViewItem Content="Window Shell" Tag="WindowShell" Icon="NewWindow" />
     </NavigationView.MenuItems>
 

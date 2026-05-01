@@ -49,6 +49,12 @@
 
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
+          <Run Text="UIElement Services:" FontWeight="SemiBold" />
+          <Run Text=" UIElement.GetServiceProvider() walks the visual tree to find the parent IWindowShell's DI scope." />
+        </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
           <Run Text="Window Shell:" FontWeight="SemiBold" />
           <Run Text=" IWindowShell + IWindowShellProvider abstraction for window-scoped infrastructure (theme manager, dialogs, navigation)." />
         </TextBlock>
