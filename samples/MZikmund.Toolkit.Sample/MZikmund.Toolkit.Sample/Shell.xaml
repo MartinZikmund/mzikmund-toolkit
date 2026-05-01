@@ -18,6 +18,8 @@
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
+      <NavigationViewItemHeader Content="Converters" />
+      <NavigationViewItem Content="Niche Converters" Tag="Converters" Icon="Switch" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
     </NavigationView.MenuItems>
