@@ -1,0 +1,62 @@
+<Page x:Class="MZikmund.Toolkit.Sample.LocalizationServiceSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="ILocalizationService"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="LocalizationService manages the active app language at runtime: tracks current and supported languages, detects the system language for first launch, persists the choice through IPreferences, and pushes the change to ApplicationLanguages.PrimaryLanguageOverride. Apps subscribe to LanguageChanged to refresh views."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Live demo"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock x:Name="SystemText" Style="{ThemeResource BodyTextBlockStyle}" />
+          <TextBlock x:Name="CurrentText" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+          <ComboBox x:Name="LanguagePicker"
+                    Header="Language"
+                    SelectionChanged="LanguagePicker_SelectionChanged" />
+
+          <TextBlock x:Name="EventLog"
+                     FontFamily="Consolas"
+                     TextWrapping="Wrap"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Services;</Run><LineBreak />
+            <LineBreak />
+            <Run>var localization = new LocalizationService(</Run><LineBreak />
+            <Run>    preferences,</Run><LineBreak />
+            <Run>    supportedLanguages: ["en-US", "cs-CZ", "de-DE"],</Run><LineBreak />
+            <Run>    fallbackLanguage: "en-US");</Run><LineBreak />
+            <LineBreak />
+            <Run>localization.LanguageChanged += (s, lang) =&gt; ReloadStrings();</Run><LineBreak />
+            <Run>localization.SetLanguage("cs-CZ");</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>

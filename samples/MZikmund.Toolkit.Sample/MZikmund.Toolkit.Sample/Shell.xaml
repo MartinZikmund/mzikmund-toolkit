@@ -20,6 +20,7 @@
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
       <NavigationViewItemHeader Content="Localization" />
       <NavigationViewItem Content="Localizer" Tag="Localizer" Icon="Globe" />
+      <NavigationViewItem Content="Localization Service" Tag="LocalizationService" Icon="Globe" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
     </NavigationView.MenuItems>
