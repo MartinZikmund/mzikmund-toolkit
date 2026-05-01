@@ -32,6 +32,7 @@ public sealed partial class Shell : Page
                 "ObservableCollectionMerge" => typeof(ObservableCollectionMergeSamplePage),
                 "XamlRootProvider" => typeof(XamlRootProviderSamplePage),
                 "WindowShell" => typeof(WindowShellSamplePage),
+                "ThemeManager" => typeof(ThemeManagerSamplePage),
                 _ => null
             };
 
