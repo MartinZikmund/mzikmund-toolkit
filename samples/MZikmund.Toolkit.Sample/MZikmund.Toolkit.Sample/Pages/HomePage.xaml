@@ -52,6 +52,12 @@
           <Run Text="Window Shell:" FontWeight="SemiBold" />
           <Run Text=" IWindowShell + IWindowShellProvider abstraction for window-scoped infrastructure (theme manager, dialogs, navigation)." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Core Infrastructure:" FontWeight="SemiBold" />
+          <Run Text=" ObservableObject, RelayCommand, ViewModelBase, WindowShellViewModel, IoC service-locator, IAppUpdater hook." />
+        </TextBlock>
       </StackPanel>
       
       <TextBlock Text="Navigation"
