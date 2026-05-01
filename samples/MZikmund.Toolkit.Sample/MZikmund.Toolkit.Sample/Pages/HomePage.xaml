@@ -46,6 +46,12 @@
           <Run Text="Localizer:" FontWeight="SemiBold" />
           <Run Text=" ILocalizer abstraction with static Localizer.Current accessor and a {Localize} XAML markup extension." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Localization Service:" FontWeight="SemiBold" />
+          <Run Text=" ILocalizationService manages active language at runtime — supported list, system detection, persistence, ApplicationLanguages.PrimaryLanguageOverride." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />

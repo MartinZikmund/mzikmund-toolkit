@@ -31,6 +31,7 @@ public sealed partial class Shell : Page
                 "PackageVersion" => typeof(PackageVersionSamplePage),
                 "ObservableCollectionMerge" => typeof(ObservableCollectionMergeSamplePage),
                 "Localizer" => typeof(LocalizerSamplePage),
+                "LocalizationService" => typeof(LocalizationServiceSamplePage),
                 "XamlRootProvider" => typeof(XamlRootProviderSamplePage),
                 _ => null
             };
