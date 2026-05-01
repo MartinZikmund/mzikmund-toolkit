@@ -1,0 +1,86 @@
+<Page x:Class="MZikmund.Toolkit.Sample.CoreInfrastructureSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="Core infrastructure"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="ObservableObject + RelayCommand + ViewModelBase + WindowShellViewModel + IoC + IAppUpdater. The MVVM building blocks the toolkit's higher-level services build on top of. No CommunityToolkit.Mvvm dependency — the basics are hand-rolled to keep the toolkit lean."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="WindowShellViewModel"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="A WindowShellViewModel exposes Title, IsLoading, LoadingStatusMessage, and a GoBack RelayCommand. The 'Go back' button is bound to GoBackCommand; pressing it raises GoBackRequested, which the page wires to a counter."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <TextBox Header="Title" Text="{x:Bind ShellViewModel.Title, Mode=TwoWay}" />
+          <CheckBox Content="IsLoading" IsChecked="{x:Bind ShellViewModel.IsLoading, Mode=TwoWay}" />
+          <TextBox Header="LoadingStatusMessage" Text="{x:Bind ShellViewModel.LoadingStatusMessage, Mode=TwoWay}" />
+
+          <Button Content="Go back" Command="{x:Bind ShellViewModel.GoBackCommand}" />
+
+          <TextBlock x:Name="GoBackCounterText"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}"
+                     Text="GoBackRequested fired 0 times." />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="IoC service-locator"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="IoC.SetProvider registers a global IServiceProvider; IoC.GetService / GetRequiredService resolve by type. Used for places that can't take constructor injection (XAML markup, attached behaviors, static helpers)."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <Button Content="Register and resolve" Click="IoC_Click" Style="{ThemeResource AccentButtonStyle}" />
+
+          <TextBlock x:Name="IoCResultText"
+                     FontFamily="Consolas"
+                     TextWrapping="Wrap"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                     Text="No call yet." />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.ViewModels;</Run><LineBreak />
+            <Run>using MZikmund.Toolkit.WinUI.Infrastructure;</Run><LineBreak />
+            <LineBreak />
+            <Run>// At startup</Run><LineBreak />
+            <Run>IoC.SetProvider(host.Services);</Run><LineBreak />
+            <LineBreak />
+            <Run>// Anywhere</Run><LineBreak />
+            <Run>var dialog = IoC.GetRequiredService&lt;IDialogService&gt;();</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
