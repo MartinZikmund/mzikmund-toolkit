@@ -1,0 +1,67 @@
+<Page x:Class="MZikmund.Toolkit.Sample.ImagePickerSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="IImagePickerService"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="ImagePickerService shows the OS file picker, copies the user's image into ApplicationData.LocalFolder under a GUID-based name, and returns an ms-appdata:// URI."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Live demo"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="On WinAppSDK desktop, the picker needs its window handle bound via WinRT.Interop. The default ImagePickerService doesn't do that; in this sample we subclass and bind to the current window so the picker actually opens."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <Button Content="Pick image" Click="Pick_Click" Style="{ThemeResource AccentButtonStyle}" />
+
+          <TextBlock x:Name="UriText"
+                     FontFamily="Consolas"
+                     TextWrapping="Wrap"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                     Text="No image picked yet." />
+
+          <Image x:Name="PreviewImage"
+                 Stretch="Uniform"
+                 MaxHeight="200" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Services;</Run><LineBreak />
+            <LineBreak />
+            <Run>var picker = new ImagePickerService(new ImagePickerOptions</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    TargetSubfolder = "Avatars",</Run><LineBreak />
+            <Run>    AllowedExtensions = [".jpg", ".png"],</Run><LineBreak />
+            <Run>});</Run><LineBreak />
+            <LineBreak />
+            <Run>var uri = await picker.PickAsync();</Run><LineBreak />
+            <Run>if (uri is not null) AvatarImage.Source = new BitmapImage(uri);</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
