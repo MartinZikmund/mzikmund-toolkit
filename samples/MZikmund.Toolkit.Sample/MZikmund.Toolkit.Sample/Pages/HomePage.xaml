@@ -40,6 +40,12 @@
           <Run Text="ObservableCollection Merge:" FontWeight="SemiBold" />
           <Run Text=" MergeWith extension that synchronizes an ObservableCollection with a source list using minimal Insert/RemoveAt/Move operations." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Disposable:" FontWeight="SemiBold" />
+          <Run Text=" Disposable.Create(Action) ad-hoc IDisposable factory for one-off using-scopes (loading flags, subscriptions, …)." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
