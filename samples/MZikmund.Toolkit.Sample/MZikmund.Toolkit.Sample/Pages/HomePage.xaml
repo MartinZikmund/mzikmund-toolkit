@@ -58,6 +58,12 @@
           <Run Text="Core Infrastructure:" FontWeight="SemiBold" />
           <Run Text=" ObservableObject, RelayCommand, ViewModelBase, WindowShellViewModel, IoC service-locator, IAppUpdater hook." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Loading Indicator:" FontWeight="SemiBold" />
+          <Run Text=" ILoadingIndicator with reference-counted BeginLoading scopes for app-wide loading UX." />
+        </TextBlock>
       </StackPanel>
       
       <TextBlock Text="Navigation"
