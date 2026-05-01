@@ -33,6 +33,7 @@ public sealed partial class Shell : Page
                 "XamlRootProvider" => typeof(XamlRootProviderSamplePage),
                 "WindowShell" => typeof(WindowShellSamplePage),
                 "CoreInfrastructure" => typeof(CoreInfrastructureSamplePage),
+                "ViewBase" => typeof(ViewBaseSamplePage),
                 _ => null
             };
 

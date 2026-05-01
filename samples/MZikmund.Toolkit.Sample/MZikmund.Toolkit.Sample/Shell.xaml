@@ -22,6 +22,7 @@
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
       <NavigationViewItem Content="Window Shell" Tag="WindowShell" Icon="NewWindow" />
       <NavigationViewItem Content="Core Infrastructure" Tag="CoreInfrastructure" Icon="Setting" />
+      <NavigationViewItem Content="View Base" Tag="ViewBase" Icon="View" />
     </NavigationView.MenuItems>
 
     <Frame x:Name="ContentFrame" />

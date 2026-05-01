@@ -1,0 +1,66 @@
+<Page x:Class="MZikmund.Toolkit.Sample.ViewBaseSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="ViewBase&lt;TViewModel&gt;"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="ViewBase&lt;TViewModel&gt; is a generic Page base that resolves TViewModel from the hosting IWindowShell's IServiceProvider, assigns it to DataContext, and forwards page lifecycle events to the matching ViewModelBase hooks (ViewCreated / ViewLoading / ViewLoaded / ViewUnloaded / OnNavigatedTo / OnNavigatedFrom). Navigation parameters that arrive before the visual tree is ready are buffered and replayed on the view-model when it resolves."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Live demo"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="This page itself implements IWindowShell with a small DI scope that registers DemoViewModel. The hosted frame navigates to DemoView (which derives from ViewBase&lt;DemoViewModel&gt; through a non-generic intermediate). Click 'Load greeting' to round-trip a navigation parameter through ViewModelBase.OnNavigatedTo."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <Button Content="Load greeting" Click="Load_Click" Style="{ThemeResource AccentButtonStyle}" />
+
+          <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                  BorderThickness="1"
+                  CornerRadius="4"
+                  Height="200">
+            <Frame x:Name="HostedFrame" />
+          </Border>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Views;</Run><LineBreak />
+            <LineBreak />
+            <Run>public class HomeViewModel : ViewModelBase { ... }</Run><LineBreak />
+            <LineBreak />
+            <Run>// XAML doesn't accept a generic root, so go through a non-generic intermediate:</Run><LineBreak />
+            <Run>public class HomeViewBase : ViewBase&lt;HomeViewModel&gt; { }</Run><LineBreak />
+            <LineBreak />
+            <Run>// HomePage.xaml uses HomeViewBase as the root element instead of Page.</Run><LineBreak />
+            <Run>public sealed partial class HomePage : HomeViewBase</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    public HomePage() =&gt; InitializeComponent();</Run><LineBreak />
+            <Run>}</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
