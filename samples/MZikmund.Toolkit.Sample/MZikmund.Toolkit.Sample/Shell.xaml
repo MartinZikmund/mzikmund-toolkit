@@ -21,6 +21,7 @@
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
       <NavigationViewItem Content="Window Shell" Tag="WindowShell" Icon="NewWindow" />
+      <NavigationViewItem Content="Navigation" Tag="Navigation" Icon="Forward" />
     </NavigationView.MenuItems>
 
     <Frame x:Name="ContentFrame" />
