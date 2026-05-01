@@ -28,6 +28,12 @@
           <Run Text="Dialog Coordinator:" FontWeight="SemiBold" />
           <Run Text=" Coordinates ContentDialog display to ensure only one dialog is shown at a time." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Color Picker Dialog:" FontWeight="SemiBold" />
+          <Run Text=" ColorPickerDialog wraps the WinUI ColorPicker in a ContentDialog with a one-call PickAsync helper." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />

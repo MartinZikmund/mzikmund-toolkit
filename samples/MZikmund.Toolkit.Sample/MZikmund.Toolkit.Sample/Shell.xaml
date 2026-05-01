@@ -15,6 +15,7 @@
       <NavigationViewItemHeader Content="Services" />
       <NavigationViewItem Content="Preferences" Tag="Preferences" Icon="Setting" />
       <NavigationViewItem Content="Dialog Coordinator" Tag="DialogCoordinator" Icon="Message" />
+      <NavigationViewItem Content="Color Picker Dialog" Tag="ColorPickerDialog" Icon="Edit" />
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
