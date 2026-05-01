@@ -46,6 +46,12 @@
           <Run Text="XamlRoot Provider:" FontWeight="SemiBold" />
           <Run Text=" Provides centralized access to the XamlRoot instance for dialogs and popups." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Window Shell:" FontWeight="SemiBold" />
+          <Run Text=" IWindowShell + IWindowShellProvider abstraction for window-scoped infrastructure (theme manager, dialogs, navigation)." />
+        </TextBlock>
       </StackPanel>
       
       <TextBlock Text="Navigation"
