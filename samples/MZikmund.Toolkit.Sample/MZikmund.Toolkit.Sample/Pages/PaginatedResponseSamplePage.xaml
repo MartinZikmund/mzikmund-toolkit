@@ -1,0 +1,72 @@
+<Page x:Class="MZikmund.Toolkit.Sample.PaginatedResponseSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="PaginatedResponse&lt;T&gt;"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="A small generic DTO for paginated API responses. Items + Page + PageSize + TotalCount, with computed TotalPages, HasPreviousPage, HasNextPage."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Simulated paginated query"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock x:Name="StatusText"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <Border BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+                  BorderThickness="1"
+                  CornerRadius="4"
+                  Height="220">
+            <ListView x:Name="ItemsList" SelectionMode="None" />
+          </Border>
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button x:Name="PrevButton" Content="Previous" Click="Prev_Click" />
+            <Button x:Name="NextButton" Content="Next" Click="Next_Click" />
+            <ComboBox x:Name="PageSizePicker" Header="Page size" SelectionChanged="PageSize_Changed">
+              <x:Int32>5</x:Int32>
+              <x:Int32>10</x:Int32>
+              <x:Int32>20</x:Int32>
+            </ComboBox>
+          </StackPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Models;</Run><LineBreak />
+            <LineBreak />
+            <Run>var response = new PaginatedResponse&lt;Order&gt;(</Run><LineBreak />
+            <Run>    Items: orders,</Run><LineBreak />
+            <Run>    Page: 2,</Run><LineBreak />
+            <Run>    PageSize: 20,</Run><LineBreak />
+            <Run>    TotalCount: 137);</Run><LineBreak />
+            <LineBreak />
+            <Run>// response.TotalPages == 7</Run><LineBreak />
+            <Run>// response.HasPreviousPage == true</Run><LineBreak />
+            <Run>// response.HasNextPage == true</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
