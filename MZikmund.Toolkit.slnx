@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="src/MZikmund.Toolkit.WinUI/MZikmund.Toolkit.WinUI.csproj" />
+  <Project Path="samples/MZikmund.Toolkit.Sample/MZikmund.Toolkit.Sample/MZikmund.Toolkit.Sample.csproj" />
+  <Project Path="tests/MZikmund.Toolkit.WinUI.Tests/MZikmund.Toolkit.WinUI.Tests.csproj" />
+</Solution>
