@@ -1,0 +1,97 @@
+<Page x:Class="MZikmund.Toolkit.Sample.StoreLauncherSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="StoreLauncherService"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="StoreLauncherService wraps platform store-protocol URIs (ms-windows-store, market://, itms-apps://) for three common actions: rate the app, show its listing, and show more apps by this publisher. Populate the identifiers for the platforms you ship to and the service handles per-platform URI selection."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Inspect URIs"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="Pick a target platform and review the URIs the service would launch. Use 'Launch on this device' to actually invoke Windows.System.Launcher (only meaningful on a real device that recognizes the protocol)."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <ComboBox x:Name="PlatformPicker"
+                    Header="Target platform"
+                    SelectionChanged="PlatformPicker_SelectionChanged">
+            <ComboBoxItem Content="Windows" Tag="Windows" IsSelected="True" />
+            <ComboBoxItem Content="Android" Tag="Android" />
+            <ComboBoxItem Content="Apple" Tag="Apple" />
+          </ComboBox>
+
+          <Grid ColumnSpacing="8" RowSpacing="8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Rate URI:" VerticalAlignment="Center" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="RateUriText" FontFamily="Consolas" TextWrapping="Wrap" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Listing URI:" VerticalAlignment="Center" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="ListingUriText" FontFamily="Consolas" TextWrapping="Wrap" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="More apps URI:" VerticalAlignment="Center" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="MoreAppsUriText" FontFamily="Consolas" TextWrapping="Wrap" />
+          </Grid>
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Rate (this device)" Click="RateApp_Click" />
+            <Button Content="Listing (this device)" Click="ShowListing_Click" />
+            <Button Content="More apps (this device)" Click="MoreApps_Click" />
+          </StackPanel>
+
+          <TextBlock x:Name="LaunchResult"
+                     Style="{ThemeResource BodyStrongTextBlockStyle}"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Services;</Run><LineBreak />
+            <LineBreak />
+            <Run>var service = new StoreLauncherService(new StoreLauncherOptions</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    WindowsProductId = "9P1234567890",</Run><LineBreak />
+            <Run>    AndroidPackageName = "com.example.app",</Run><LineBreak />
+            <Run>    AppleAppId = "1234567890",</Run><LineBreak />
+            <Run>    PublisherName = "Contoso",</Run><LineBreak />
+            <Run>});</Run><LineBreak />
+            <LineBreak />
+            <Run>await service.RateAppAsync();</Run><LineBreak />
+            <Run>await service.ShowAppListingAsync();</Run><LineBreak />
+            <Run>await service.MoreAppsByPublisherAsync();</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
