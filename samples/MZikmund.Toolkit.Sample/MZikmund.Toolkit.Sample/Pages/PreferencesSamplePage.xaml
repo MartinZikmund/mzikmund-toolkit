@@ -77,6 +77,37 @@
         </StackPanel>
       </Border>
       
+      <!-- Maintenance Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Maintenance — ContainsKey / Remove / Clear"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="Inspect and bulk-modify stored preferences."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <TextBox x:Name="MaintenanceKeyInput"
+                   Header="Key to check or remove"
+                   PlaceholderText="SampleString"
+                   Text="SampleString" />
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Contains key?" Click="ContainsKey_Click" />
+            <Button Content="Remove key" Click="RemoveKey_Click" />
+            <Button Content="Clear all" Click="ClearAll_Click" />
+          </StackPanel>
+
+          <TextBlock x:Name="MaintenanceResult"
+                     Text="No action taken yet."
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+
       <!-- Code Sample -->
       <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
               BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
