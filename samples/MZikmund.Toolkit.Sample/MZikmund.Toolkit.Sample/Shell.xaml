@@ -18,6 +18,8 @@
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
+      <NavigationViewItemHeader Content="Activation" />
+      <NavigationViewItem Content="Deep Link" Tag="DeepLink" Icon="Link" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
     </NavigationView.MenuItems>
