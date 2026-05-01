@@ -1,0 +1,68 @@
+<Page x:Class="MZikmund.Toolkit.Sample.NavigationSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="INavigationService"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="NavigationService is a thin wrapper over Frame that reads NavigationInfoAttribute on destination pages — section tag for highlighting NavigationView items and transition to play. Section tags are strings (not a hard-coded enum) so apps own their own taxonomy."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Live demo"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Go to Main" Click="GotoMain_Click" Style="{ThemeResource AccentButtonStyle}" />
+            <Button Content="Go to Settings" Click="GotoSettings_Click" />
+            <Button Content="Back" Click="Back_Click" />
+          </StackPanel>
+
+          <TextBlock x:Name="StatusText" Style="{ThemeResource BodyStrongTextBlockStyle}" />
+
+          <Frame x:Name="HostedFrame">
+            <Frame.ContentTransitions>
+              <TransitionCollection />
+            </Frame.ContentTransitions>
+          </Frame>
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Navigation;</Run><LineBreak />
+            <Run>using MZikmund.Toolkit.WinUI.Services;</Run><LineBreak />
+            <LineBreak />
+            <Run>public static class AppSections</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    public const string Main = "main";</Run><LineBreak />
+            <Run>    public const string Settings = "settings";</Run><LineBreak />
+            <Run>}</Run><LineBreak />
+            <LineBreak />
+            <Run>[NavigationInfo(AppSections.Settings, NavigationTransition.FromRight)]</Run><LineBreak />
+            <Run>public sealed partial class SettingsPage : Page { }</Run><LineBreak />
+            <LineBreak />
+            <Run>nav.Navigate(typeof(SettingsPage));  // CurrentSection becomes "settings"</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
