@@ -20,6 +20,7 @@
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
       <NavigationViewItemHeader Content="Platform" />
       <NavigationViewItem Content="Platform Services" Tag="PlatformServices" Icon="World" />
+      <NavigationViewItem Content="Mail Service" Tag="MailService" Icon="Mail" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
     </NavigationView.MenuItems>

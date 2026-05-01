@@ -46,6 +46,12 @@
           <Run Text="Platform Services:" FontWeight="SemiBold" />
           <Run Text=" ILauncherService (URI launcher), IDisplayRequestManager (keep-screen-on), IShareService (text/URL share)." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Mail Service:" FontWeight="SemiBold" />
+          <Run Text=" IMailService.ComposeMailAsync builds a mailto: URI and hands it to ILauncherService." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />

@@ -1,0 +1,66 @@
+<Page x:Class="MZikmund.Toolkit.Sample.MailServiceSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="IMailService"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="IMailService.ComposeMailAsync builds a mailto: URI and hands it to ILauncherService, which opens the user's default mail client pre-populated with the recipient, subject, and body."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Compose"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBox x:Name="ToInput" Header="To" Text="support@example.com" />
+          <TextBox x:Name="SubjectInput" Header="Subject" Text="Hello from the toolkit" />
+          <TextBox x:Name="BodyInput"
+                   Header="Body"
+                   AcceptsReturn="True"
+                   Height="80"
+                   Text="This message was composed via IMailService." />
+
+          <Button Content="Open mail client" Click="Compose_Click" Style="{ThemeResource AccentButtonStyle}" />
+
+          <TextBlock x:Name="UriPreviewText"
+                     FontFamily="Consolas"
+                     TextWrapping="Wrap"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Services;</Run><LineBreak />
+            <LineBreak />
+            <Run>// DI registration</Run><LineBreak />
+            <Run>services.AddSingleton&lt;ILauncherService, LauncherService&gt;();</Run><LineBreak />
+            <Run>services.AddSingleton&lt;IMailService, MailService&gt;();</Run><LineBreak />
+            <LineBreak />
+            <Run>await mail.ComposeMailAsync(</Run><LineBreak />
+            <Run>    addressTo: "support@example.com",</Run><LineBreak />
+            <Run>    subject: "Help",</Run><LineBreak />
+            <Run>    body: "I have a question…");</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
