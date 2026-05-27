@@ -31,6 +31,7 @@ public sealed partial class Shell : Page
                 "AppRating" => typeof(AppRatingSamplePage),
                 "PackageVersion" => typeof(PackageVersionSamplePage),
                 "ObservableCollectionMerge" => typeof(ObservableCollectionMergeSamplePage),
+                "Converters" => typeof(ConvertersSamplePage),
                 "ResourceAccessor" => typeof(ResourceAccessorSamplePage),
                 "StableHash" => typeof(StableHashSamplePage),
                 "XamlRootProvider" => typeof(XamlRootProviderSamplePage),
