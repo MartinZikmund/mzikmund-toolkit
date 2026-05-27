@@ -30,6 +30,7 @@ public sealed partial class Shell : Page
                 "DialogCoordinator" => typeof(DialogCoordinatorSamplePage),
                 "PackageVersion" => typeof(PackageVersionSamplePage),
                 "ObservableCollectionMerge" => typeof(ObservableCollectionMergeSamplePage),
+                "NotificationPermission" => typeof(NotificationPermissionSamplePage),
                 "XamlRootProvider" => typeof(XamlRootProviderSamplePage),
                 _ => null
             };
