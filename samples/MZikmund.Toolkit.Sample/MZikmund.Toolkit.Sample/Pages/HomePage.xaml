@@ -40,6 +40,12 @@
           <Run Text="ObservableCollection Merge:" FontWeight="SemiBold" />
           <Run Text=" MergeWith extension that synchronizes an ObservableCollection with a source list using minimal Insert/RemoveAt/Move operations." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Store Service:" FontWeight="SemiBold" />
+          <Run Text=" IStoreService abstraction (Fake / Pro / Microsoft Store) for in-app-purchase entitlements." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
