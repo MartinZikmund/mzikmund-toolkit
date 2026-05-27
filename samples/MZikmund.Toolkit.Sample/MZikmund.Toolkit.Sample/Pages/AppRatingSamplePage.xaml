@@ -1,0 +1,91 @@
+<Page x:Class="MZikmund.Toolkit.Sample.AppRatingSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="IAppRatingService"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="IAppRatingService tracks app launches and prompts the user to rate once a threshold is reached. It persists state through IPreferences and routes the prompt to a per-platform store URI based on AppRatingOptions."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Live demo"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="The threshold for this demo is 3 launches. Click 'Increment' to simulate launches; once the threshold is reached the 'Should request rating?' state flips to true and Request Rating becomes meaningful."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <Grid ColumnSpacing="8" RowSpacing="8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Launch count:" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="0" Grid.Column="1" x:Name="LaunchCountText" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Has been asked:" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="1" Grid.Column="1" x:Name="HasBeenAskedText" />
+
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Should request rating?:" FontWeight="SemiBold" />
+            <TextBlock Grid.Row="2" Grid.Column="1" x:Name="ShouldRequestText" />
+          </Grid>
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Increment launch count" Click="Increment_Click" Style="{ThemeResource AccentButtonStyle}" />
+            <Button Content="Request rating" Click="Request_Click" />
+            <Button Content="Reset" Click="Reset_Click" />
+          </StackPanel>
+
+          <TextBlock x:Name="ResultText"
+                     TextWrapping="Wrap"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Services;</Run><LineBreak />
+            <LineBreak />
+            <Run>var rating = new AppRatingService(preferences, new AppRatingOptions</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    WindowsProductId = "9P1234567890",</Run><LineBreak />
+            <Run>    MinLaunchCountForRating = 5,</Run><LineBreak />
+            <Run>});</Run><LineBreak />
+            <LineBreak />
+            <Run>// On app start</Run><LineBreak />
+            <Run>rating.IncrementLaunchCount();</Run><LineBreak />
+            <LineBreak />
+            <Run>if (rating.ShouldRequestRating)</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    await rating.RequestRatingAsync();</Run><LineBreak />
+            <Run>}</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
