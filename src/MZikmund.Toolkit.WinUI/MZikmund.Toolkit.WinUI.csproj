@@ -41,6 +41,21 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\MZikmund.Toolkit.SourceGenerators\MZikmund.Toolkit.SourceGenerators.csproj"
+                      OutputItemType="Analyzer"
+                      ReferenceOutputAssembly="false" />
+  </ItemGroup>
+
+  <!-- Pack the source generator into the toolkit's nupkg so consumers automatically get
+       GeneratedPackageInfo emitted into their own assemblies when they reference the toolkit. -->
+  <ItemGroup>
+    <None Include="..\MZikmund.Toolkit.SourceGenerators\bin\$(Configuration)\netstandard2.0\MZikmund.Toolkit.SourceGenerators.dll"
+          Pack="true"
+          PackagePath="analyzers/dotnet/cs"
+          Visible="false" />
+  </ItemGroup>
+
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
     <!--
     If you encounter this error message:
