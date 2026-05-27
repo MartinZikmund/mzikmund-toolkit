@@ -19,6 +19,8 @@
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
+      <NavigationViewItemHeader Content="Resources" />
+      <NavigationViewItem Content="Resource Accessor" Tag="ResourceAccessor" Icon="Library" />
       <NavigationViewItemHeader Content="Helpers" />
       <NavigationViewItem Content="Stable Hash" Tag="StableHash" Icon="Tag" />
       <NavigationViewItemHeader Content="Infrastructure" />
