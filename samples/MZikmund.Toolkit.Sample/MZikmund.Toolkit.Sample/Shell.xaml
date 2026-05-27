@@ -19,6 +19,8 @@
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
+      <NavigationViewItemHeader Content="Platform" />
+      <NavigationViewItem Content="Platform Services" Tag="PlatformServices" Icon="World" />
       <NavigationViewItemHeader Content="Helpers" />
       <NavigationViewItem Content="Stable Hash" Tag="StableHash" Icon="Tag" />
       <NavigationViewItemHeader Content="Infrastructure" />

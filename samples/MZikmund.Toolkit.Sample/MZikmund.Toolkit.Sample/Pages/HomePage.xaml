@@ -49,6 +49,12 @@
 
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
+          <Run Text="Platform Services:" FontWeight="SemiBold" />
+          <Run Text=" ILauncherService (URI launcher), IDisplayRequestManager (keep-screen-on), IShareService (text/URL share)." />
+        </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
           <Run Text="Stable Hash:" FontWeight="SemiBold" />
           <Run Text=" StableHash helper that produces a stable Int32 from a Guid or string for platform APIs that require integer IDs." />
         </TextBlock>
