@@ -45,6 +45,8 @@
           <Run Text="• " FontWeight="Bold" />
           <Run Text="Resource Accessor:" FontWeight="SemiBold" />
           <Run Text=" Type-safe lookup of resources defined in App.xaml from code-behind, behaviors, and converters." />
+          <Run Text="Stable Hash:" FontWeight="SemiBold" />
+          <Run Text=" StableHash helper that produces a stable Int32 from a Guid or string for platform APIs that require integer IDs." />
         </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">

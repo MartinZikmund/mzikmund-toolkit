@@ -30,6 +30,8 @@ jobs:
         useConfigFile: true
     - name: Restore workloads
       run: dotnet workload restore MZikmund.Toolkit.slnx
+    - name: Install wasm-tools workload
+      run: dotnet workload install wasm-tools
     - name: Restore dependencies
       run: dotnet restore MZikmund.Toolkit.slnx
     - name: Build
