@@ -81,6 +81,32 @@ public sealed partial class PreferencesSamplePage : Page
         ComplexValueResult.Text = "Person cleared";
     }
 
+    private void ContainsKey_Click(object sender, RoutedEventArgs e)
+    {
+        var key = MaintenanceKeyInput.Text;
+        MaintenanceResult.Text = _preferences.ContainsKey(key)
+            ? $"Key '{key}' is present."
+            : $"Key '{key}' is not stored.";
+    }
+
+    private void RemoveKey_Click(object sender, RoutedEventArgs e)
+    {
+        var key = MaintenanceKeyInput.Text;
+        _preferences.Remove(key);
+        MaintenanceResult.Text = $"Removed '{key}' (if it existed).";
+    }
+
+    private void ClearAll_Click(object sender, RoutedEventArgs e)
+    {
+        _preferences.Clear();
+        SimpleValueInput.Text = string.Empty;
+        SimpleValueResult.Text = "No value stored";
+        PersonNameInput.Text = string.Empty;
+        PersonAgeInput.Text = string.Empty;
+        ComplexValueResult.Text = "No person stored";
+        MaintenanceResult.Text = "All preferences cleared.";
+    }
+
     private class Person
     {
         public string Name { get; set; } = string.Empty;
