@@ -1,4 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
+using System.Diagnostics.CodeAnalysis;
 
 namespace MZikmund.Toolkit.WinUI.Services;
 
@@ -14,7 +14,6 @@ public interface IPreferences
     /// <param name="key">Key.</param>
     /// <param name="defaultValue">Default value.</param>
     /// <returns>Value from settings or default value.</returns>
-    /// </summary>
     T Get<T>(string key, T defaultValue);
 
     /// <summary>
@@ -41,7 +40,6 @@ public interface IPreferences
     /// <param name="key">Key.</param>
     /// <param name="defaultValue">Default value.</param>
     /// <returns>Value from settings or default value.</returns>
-    /// </summary>
     T GetComplex<T>(string key, T defaultValue);
 
     /// <summary>
@@ -62,4 +60,22 @@ public interface IPreferences
     /// <param name="key">Key.</param>
     /// <param name="value">Value.</param>
     void SetComplex<T>(string key, T? value);
+
+    /// <summary>
+    /// Determines whether a setting with the given key exists.
+    /// </summary>
+    /// <param name="key">Key.</param>
+    /// <returns><see langword="true"/> if a value is stored under <paramref name="key"/>.</returns>
+    bool ContainsKey(string key);
+
+    /// <summary>
+    /// Removes the setting stored under the given key. Does nothing if no such setting exists.
+    /// </summary>
+    /// <param name="key">Key.</param>
+    void Remove(string key);
+
+    /// <summary>
+    /// Removes all stored preferences.
+    /// </summary>
+    void Clear();
 }

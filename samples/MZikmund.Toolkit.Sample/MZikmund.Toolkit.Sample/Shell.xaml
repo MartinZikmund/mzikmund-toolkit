@@ -15,11 +15,14 @@
       <NavigationViewItemHeader Content="Services" />
       <NavigationViewItem Content="Preferences" Tag="Preferences" Icon="Setting" />
       <NavigationViewItem Content="Dialog Coordinator" Tag="DialogCoordinator" Icon="Message" />
+      <NavigationViewItem Content="App Rating" Tag="AppRating" Icon="Favorite" />
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
       <NavigationViewItemHeader Content="Platform" />
       <NavigationViewItem Content="Platform Services" Tag="PlatformServices" Icon="World" />
+      <NavigationViewItemHeader Content="Helpers" />
+      <NavigationViewItem Content="Stable Hash" Tag="StableHash" Icon="Tag" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
     </NavigationView.MenuItems>
