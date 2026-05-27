@@ -167,4 +167,22 @@ public class Preferences : IPreferences
     /// </summary>
     public T GetComplex<T>(string key, T defaultValue) => TryGetComplex<T>(key, out var value) ?
         value : defaultValue;
+
+    /// <inheritdoc />
+    public bool ContainsKey(string key) =>
+        _preferenceCache.ContainsKey(key) || _container.Values.ContainsKey(key);
+
+    /// <inheritdoc />
+    public void Remove(string key)
+    {
+        _preferenceCache.Remove(key);
+        _container.Values.Remove(key);
+    }
+
+    /// <inheritdoc />
+    public void Clear()
+    {
+        _preferenceCache.Clear();
+        _container.Values.Clear();
+    }
 }

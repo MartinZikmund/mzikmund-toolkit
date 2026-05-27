@@ -28,6 +28,12 @@
           <Run Text="Dialog Coordinator:" FontWeight="SemiBold" />
           <Run Text=" Coordinates ContentDialog display to ensure only one dialog is shown at a time." />
         </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="App Rating:" FontWeight="SemiBold" />
+          <Run Text=" Tracks launch count and prompts for a store rating once a configurable threshold is reached." />
+        </TextBlock>
         
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
           <Run Text="• " FontWeight="Bold" />
@@ -39,6 +45,14 @@
           <Run Text="• " FontWeight="Bold" />
           <Run Text="ObservableCollection Merge:" FontWeight="SemiBold" />
           <Run Text=" MergeWith extension that synchronizes an ObservableCollection with a source list using minimal Insert/RemoveAt/Move operations." />
+        </TextBlock>
+
+        <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
+          <Run Text="• " FontWeight="Bold" />
+          <Run Text="Resource Accessor:" FontWeight="SemiBold" />
+          <Run Text=" Type-safe lookup of resources defined in App.xaml from code-behind, behaviors, and converters." />
+          <Run Text="Stable Hash:" FontWeight="SemiBold" />
+          <Run Text=" StableHash helper that produces a stable Int32 from a Guid or string for platform APIs that require integer IDs." />
         </TextBlock>
 
         <TextBlock Style="{ThemeResource BodyTextBlockStyle}">
