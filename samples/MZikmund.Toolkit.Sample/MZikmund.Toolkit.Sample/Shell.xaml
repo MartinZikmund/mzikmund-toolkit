@@ -1,0 +1,27 @@
+<Page x:Class="MZikmund.Toolkit.Sample.Shell"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample"
+      Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+  <NavigationView x:Name="NavView"
+                  PaneDisplayMode="Left"
+                  IsBackButtonVisible="Auto"
+                  BackRequested="NavView_BackRequested"
+                  ItemInvoked="NavView_ItemInvoked"
+                  Header="MZikmund Toolkit Gallery">
+    <NavigationView.MenuItems>
+      <NavigationViewItem Content="Home" Tag="Home" Icon="Home" />
+      <NavigationViewItemHeader Content="Services" />
+      <NavigationViewItem Content="Preferences" Tag="Preferences" Icon="Setting" />
+      <NavigationViewItem Content="Dialog Coordinator" Tag="DialogCoordinator" Icon="Message" />
+      <NavigationViewItemHeader Content="Extensions" />
+      <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
+      <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
+      <NavigationViewItemHeader Content="Infrastructure" />
+      <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
+    </NavigationView.MenuItems>
+
+    <Frame x:Name="ContentFrame" />
+  </NavigationView>
+</Page>

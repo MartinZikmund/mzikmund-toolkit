@@ -29,11 +29,13 @@ jobs:
       with:
         useConfigFile: true
     - name: Restore workloads
-      run: dotnet workload restore src/MZikmund.Toolkit.sln
+      run: dotnet workload restore MZikmund.Toolkit.slnx
+    - name: Install wasm-tools workload
+      run: dotnet workload install wasm-tools
     - name: Restore dependencies
-      run: dotnet restore src/MZikmund.Toolkit.sln
+      run: dotnet restore MZikmund.Toolkit.slnx
     - name: Build
-      run: dotnet build --no-restore src/MZikmund.Toolkit.sln /p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
+      run: dotnet build --no-restore MZikmund.Toolkit.slnx /p:PackageVersion=${{ steps.gitversion.outputs.FullSemVer }}
     # - name: Test
     #   run: dotnet test --no-build --verbosity normal
     # - name: Pack

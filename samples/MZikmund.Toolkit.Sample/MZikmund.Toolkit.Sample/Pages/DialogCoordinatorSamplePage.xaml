@@ -1,0 +1,88 @@
+<Page x:Class="MZikmund.Toolkit.Sample.DialogCoordinatorSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="Dialog Coordinator"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+      
+      <TextBlock TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}">
+        <Run>The DialogCoordinator service ensures that only one ContentDialog is displayed at a time. WinUI throws an exception if you try to show multiple dialogs simultaneously, and this service queues them automatically.</Run>
+      </TextBlock>
+      
+      <!-- Single Dialog Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Single Dialog"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock Text="Show a simple ContentDialog:"
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+          
+          <Button Content="Show Dialog" Click="ShowDialog_Click" />
+          
+          <TextBlock x:Name="SingleDialogResult"
+                     Text="No dialog shown yet"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+      
+      <!-- Multiple Dialogs Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Multiple Dialogs (Queued)"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock Text="Try to show multiple dialogs at once. The DialogCoordinator will queue them and show them one at a time:"
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+          
+          <Button Content="Show 3 Dialogs Rapidly" Click="ShowMultipleDialogs_Click" />
+          
+          <TextBlock x:Name="MultipleDialogResult"
+                     Text="Click the button to test"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+      
+      <!-- Code Sample -->
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>// Initialize the coordinator</Run><LineBreak />
+            <Run>var coordinator = new DialogCoordinator();</Run><LineBreak />
+            <LineBreak />
+            <Run>// Show a dialog - it will be queued if another is showing</Run><LineBreak />
+            <Run>var dialog = new ContentDialog</Run><LineBreak />
+            <Run>{</Run><LineBreak />
+            <Run>    Title = "Example Dialog",</Run><LineBreak />
+            <Run>    Content = "This is an example",</Run><LineBreak />
+            <Run>    PrimaryButtonText = "OK",</Run><LineBreak />
+            <Run>    XamlRoot = this.XamlRoot</Run><LineBreak />
+            <Run>};</Run><LineBreak />
+            <Run>var result = await coordinator.ShowAsync(dialog);</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>

@@ -1,0 +1,117 @@
+<Page x:Class="MZikmund.Toolkit.Sample.PackageVersionSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="Package Version Extensions"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+      
+      <TextBlock Text="The PackageVersion extension provides convenient methods to format version information for display."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+      
+      <!-- Version Formatting Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Version Formatting"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock Text="Format a PackageVersion object as a string:"
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+          
+          <Grid ColumnSpacing="8" RowSpacing="8">
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto" />
+              <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Major:" VerticalAlignment="Center" />
+            <TextBox Grid.Row="0" Grid.Column="1" x:Name="MajorInput" PlaceholderText="1" InputScope="Number" />
+            
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="Minor:" VerticalAlignment="Center" />
+            <TextBox Grid.Row="1" Grid.Column="1" x:Name="MinorInput" PlaceholderText="2" InputScope="Number" />
+            
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Build:" VerticalAlignment="Center" />
+            <TextBox Grid.Row="2" Grid.Column="1" x:Name="BuildInput" PlaceholderText="3" InputScope="Number" />
+            
+            <TextBlock Grid.Row="3" Grid.Column="0" Text="Revision:" VerticalAlignment="Center" />
+            <TextBox Grid.Row="3" Grid.Column="1" x:Name="RevisionInput" PlaceholderText="4" InputScope="Number" />
+          </Grid>
+          
+          <Button Content="Format Version" Click="FormatVersion_Click" />
+          
+          <StackPanel Spacing="8">
+            <TextBlock x:Name="FullVersionResult"
+                       Text="Full version: Not formatted yet"
+                       Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+            
+            <TextBlock x:Name="ShortVersionResult"
+                       Text="Short version (major.minor only): Not formatted yet"
+                       Foreground="{ThemeResource AccentTextFillColorSecondaryBrush}" />
+          </StackPanel>
+        </StackPanel>
+      </Border>
+      
+      <!-- Current App Version Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Current App Version"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock Text="Display the current application version:"
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+          
+          <Button Content="Get App Version" Click="GetAppVersion_Click" />
+          
+          <TextBlock x:Name="AppVersionResult"
+                     Text="Click to get app version"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+      
+      <!-- Code Sample -->
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Extensions;</Run><LineBreak />
+            <LineBreak />
+            <Run>// Get current package version</Run><LineBreak />
+            <Run>var package = Package.Current;</Run><LineBreak />
+            <Run>var version = package.Id.Version;</Run><LineBreak />
+            <LineBreak />
+            <Run>// Format full version (e.g., "1.2.3.4")</Run><LineBreak />
+            <Run>string fullVersion = version.ToVersionString();</Run><LineBreak />
+            <LineBreak />
+            <Run>// Format short version (e.g., "1.2")</Run><LineBreak />
+            <Run>string shortVersion = version.ToVersionString(majorMinorOnly: true);</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>

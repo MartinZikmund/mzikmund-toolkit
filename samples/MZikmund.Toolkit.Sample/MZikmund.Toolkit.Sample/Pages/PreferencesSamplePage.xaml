@@ -1,0 +1,105 @@
+<Page x:Class="MZikmund.Toolkit.Sample.PreferencesSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="Preferences Service"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+      
+      <TextBlock Text="The Preferences service allows you to store and retrieve application settings. It supports both simple types (strings, numbers, booleans) and complex types (serialized as JSON)."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+      
+      <!-- Simple Preference Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Simple Preference"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock Text="Store and retrieve a simple string value:"
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+          
+          <TextBox x:Name="SimpleValueInput"
+                   Header="Value"
+                   PlaceholderText="Enter a value" />
+          
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Save" Click="SaveSimpleValue_Click" />
+            <Button Content="Load" Click="LoadSimpleValue_Click" />
+            <Button Content="Clear" Click="ClearSimpleValue_Click" />
+          </StackPanel>
+          
+          <TextBlock x:Name="SimpleValueResult"
+                     Text="No value stored"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+      
+      <!-- Complex Preference Sample -->
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Complex Preference"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock Text="Store and retrieve a complex object (Person with Name and Age):"
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+          
+          <TextBox x:Name="PersonNameInput"
+                   Header="Name"
+                   PlaceholderText="Enter name" />
+          
+          <TextBox x:Name="PersonAgeInput"
+                   Header="Age"
+                   PlaceholderText="Enter age"
+                   InputScope="Number" />
+          
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="Save Person" Click="SaveComplexValue_Click" />
+            <Button Content="Load Person" Click="LoadComplexValue_Click" />
+            <Button Content="Clear Person" Click="ClearComplexValue_Click" />
+          </StackPanel>
+          
+          <TextBlock x:Name="ComplexValueResult"
+                     Text="No person stored"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}" />
+        </StackPanel>
+      </Border>
+      
+      <!-- Code Sample -->
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+          
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>// Simple preference</Run><LineBreak />
+            <Run>var preferences = new Preferences();</Run><LineBreak />
+            <Run>preferences.Set("username", "John");</Run><LineBreak />
+            <Run>var username = preferences.Get("username", string.Empty);</Run><LineBreak />
+            <LineBreak />
+            <Run>// Complex preference</Run><LineBreak />
+            <Run>var person = new Person { Name = "John", Age = 30 };</Run><LineBreak />
+            <Run>preferences.SetComplex("user", person);</Run><LineBreak />
+            <Run>var savedPerson = preferences.GetComplex("user", new Person());</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
