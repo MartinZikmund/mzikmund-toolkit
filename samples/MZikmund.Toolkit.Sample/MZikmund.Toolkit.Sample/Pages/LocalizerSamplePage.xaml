@@ -1,0 +1,93 @@
+<Page x:Class="MZikmund.Toolkit.Sample.LocalizerSamplePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:MZikmund.Toolkit.Sample"
+      xmlns:toolkit="using:MZikmund.Toolkit.WinUI.Markup">
+
+  <ScrollViewer Padding="24">
+    <StackPanel Spacing="16" MaxWidth="800">
+      <TextBlock Text="ILocalizer + LocalizeExtension"
+                 Style="{ThemeResource TitleTextBlockStyle}" />
+
+      <TextBlock Text="ILocalizer is the toolkit's localization abstraction. Apps register an implementation (typically wrapping IStringLocalizer) and the LocalizeExtension XAML markup extension resolves keys through Localizer.Current."
+                 TextWrapping="Wrap"
+                 Style="{ThemeResource BodyTextBlockStyle}" />
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="Live key lookup"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="Switch the active localizer and look up keys against it."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <StackPanel Orientation="Horizontal" Spacing="8">
+            <Button Content="English" Click="UseEnglish_Click" Style="{ThemeResource AccentButtonStyle}" />
+            <Button Content="Czech" Click="UseCzech_Click" />
+            <Button Content="Reset (fallback)" Click="UseFallback_Click" />
+          </StackPanel>
+
+          <TextBox x:Name="KeyInput"
+                   Header="Key"
+                   PlaceholderText="Greeting"
+                   Text="Greeting" />
+
+          <Button Content="Lookup" Click="Lookup_Click" />
+
+          <TextBlock x:Name="LookupResult"
+                     TextWrapping="Wrap"
+                     Foreground="{ThemeResource AccentTextFillColorPrimaryBrush}"
+                     Text="No lookup performed yet." />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="12">
+          <TextBlock Text="LocalizeExtension in XAML"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock Text="These TextBlocks bind to keys through {toolkit:Localize}. The markup extension is evaluated once at construction time, so switching the localizer at runtime won't update existing TextBlocks — see issue #39 for live language switching."
+                     TextWrapping="Wrap"
+                     Style="{ThemeResource BodyTextBlockStyle}" />
+
+          <TextBlock FontWeight="SemiBold"
+                     Text="{toolkit:Localize Key=Greeting}" />
+          <TextBlock Text="{toolkit:Localize Key=Farewell}" />
+          <TextBlock Foreground="{ThemeResource SystemFillColorCriticalBrush}"
+                     Text="{toolkit:Localize Key=MissingKey}" />
+        </StackPanel>
+      </Border>
+
+      <Border Background="{ThemeResource LayerFillColorDefaultBrush}"
+              BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}"
+              BorderThickness="1"
+              CornerRadius="8"
+              Padding="16">
+        <StackPanel Spacing="8">
+          <TextBlock Text="Code Sample"
+                     Style="{ThemeResource SubtitleTextBlockStyle}" />
+
+          <TextBlock FontFamily="Consolas" TextWrapping="Wrap">
+            <Run>using MZikmund.Toolkit.WinUI.Localization;</Run><LineBreak />
+            <LineBreak />
+            <Run>// At app startup — wire your IStringLocalizer-based impl</Run><LineBreak />
+            <Run>Localizer.Current = new MyAppLocalizer(stringLocalizer);</Run><LineBreak />
+            <LineBreak />
+            <Run>// In XAML</Run><LineBreak />
+            <Run>// xmlns:toolkit="using:MZikmund.Toolkit.WinUI.Markup"</Run><LineBreak />
+            <Run>// &lt;TextBlock Text="{toolkit:Localize Key=Greeting}" /&gt;</Run>
+          </TextBlock>
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</Page>
