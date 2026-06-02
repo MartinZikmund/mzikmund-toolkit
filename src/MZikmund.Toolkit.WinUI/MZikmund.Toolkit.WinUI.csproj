@@ -1,6 +1,14 @@
 ﻿<Project Sdk="Uno.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net10.0;net10.0-ios;net10.0-maccatalyst;net10.0-android;net10.0-windows10.0.19041;net10.0-browserwasm;net10.0-desktop</TargetFrameworks>
+    <!--
+      Renderer-agnostic library: the plain net10.0 target is compiled against the Uno.WinUI
+      reference assemblies and serves Desktop, WebAssembly, and any Skia/non-Skia consumer —
+      the consuming app head supplies the actual renderer. Targeting net10.0-browserwasm /
+      net10.0-desktop here would force the SDK to bake in (and export as a public dependency)
+      a specific WASM/Desktop renderer, clashing with SkiaRenderer apps. This mirrors how
+      Uno.Toolkit.UI ships (no -browserwasm / -desktop library TFMs).
+    -->
+    <TargetFrameworks>net10.0;net10.0-ios;net10.0-maccatalyst;net10.0-android;net10.0-windows10.0.19041</TargetFrameworks>
     <UnoSingleProject>true</UnoSingleProject>
     <OutputType>Library</OutputType>
     <!-- Ensures the .xr.xml files are generated in a proper layout folder -->
