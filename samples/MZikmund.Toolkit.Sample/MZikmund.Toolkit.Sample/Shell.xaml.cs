@@ -30,6 +30,7 @@ public sealed partial class Shell : Page
                 "DialogCoordinator" => typeof(DialogCoordinatorSamplePage),
                 "AppRating" => typeof(AppRatingSamplePage),
                 "PackageVersion" => typeof(PackageVersionSamplePage),
+                "PackageInfo" => typeof(PackageInfoSamplePage),
                 "ObservableCollectionMerge" => typeof(ObservableCollectionMergeSamplePage),
                 "Converters" => typeof(ConvertersSamplePage),
                 "ResourceAccessor" => typeof(ResourceAccessorSamplePage),

@@ -5,5 +5,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\MZikmund.Toolkit.WinUI\MZikmund.Toolkit.WinUI.csproj" />
+    <ProjectReference Include="..\..\src\MZikmund.Toolkit.SourceGenerators\MZikmund.Toolkit.SourceGenerators.csproj"
+                      ReferenceOutputAssembly="true" />
   </ItemGroup>
 </Project>
