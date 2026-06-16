@@ -35,6 +35,7 @@ public sealed partial class Shell : Page
                 "ResourceAccessor" => typeof(ResourceAccessorSamplePage),
                 "StableHash" => typeof(StableHashSamplePage),
                 "XamlRootProvider" => typeof(XamlRootProviderSamplePage),
+                "WindowShell" => typeof(WindowShellSamplePage),
                 _ => null
             };
 
