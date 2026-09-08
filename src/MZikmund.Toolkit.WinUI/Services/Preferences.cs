@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 namespace MZikmund.Toolkit.WinUI.Services;
 
@@ -11,6 +12,36 @@ public class Preferences : IPreferences
     private readonly Dictionary<string, object> _preferenceCache = new();
 
     private readonly ApplicationDataContainer _container = ApplicationData.Current.LocalSettings;
+
+    private readonly JsonSerializerOptions _jsonOptions;
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Preferences"/> class using the default
+    /// (reflection-based) JSON contracts for complex values.
+    /// </summary>
+    public Preferences()
+        : this(null)
+    {
+    }
+
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Preferences"/> class.
+    /// </summary>
+    /// <param name="jsonOptions">
+    /// Options used to resolve the JSON contracts for complex values. Trimmed heads (a WebAssembly
+    /// release publish, NativeAOT) disable reflection-based serialization, so those apps should pass
+    /// options whose <see cref="JsonSerializerOptions.TypeInfoResolver"/> is a source-generated
+    /// <c>JsonSerializerContext</c> covering every stored type; otherwise the complex APIs throw.
+    /// Defaults to <see cref="JsonSerializerOptions.Default"/>.
+    /// </param>
+    public Preferences(JsonSerializerOptions? jsonOptions)
+    {
+        _jsonOptions = jsonOptions ?? JsonSerializerOptions.Default;
+    }
+
+    // GetTypeInfo carries no trimming annotation, so complex values stay serializable without
+    // leaking IL2026 to callers - the resolver decides whether reflection is involved.
+    private JsonTypeInfo<T> GetTypeInfo<T>() => (JsonTypeInfo<T>)_jsonOptions.GetTypeInfo(typeof(T));
 
     /// <summary>
     /// Retrieves a plain setting from the preferences.
@@ -56,7 +87,7 @@ public class Preferences : IPreferences
 
         if (TryGetFromContainer<string>(key, out var containerValue) && containerValue is not null)
         {
-            var deserializedValue = JsonSerializer.Deserialize<T>(containerValue);
+            var deserializedValue = JsonSerializer.Deserialize(containerValue, GetTypeInfo<T>());
             if (deserializedValue is { })
             {
                 _preferenceCache[key] = deserializedValue;
@@ -104,7 +135,7 @@ public class Preferences : IPreferences
             return;
         }
 
-        var serializedValue = JsonSerializer.Serialize(value);
+        var serializedValue = JsonSerializer.Serialize(value, GetTypeInfo<T>());
         _container.Values[key] = serializedValue;
         _preferenceCache[key] = value;
     }
