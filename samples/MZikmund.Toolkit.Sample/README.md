@@ -51,9 +51,6 @@ dotnet build -f net10.0-windows10.0.19041
 
 # iOS (macOS only)
 dotnet build -f net10.0-ios
-
-# macCatalyst (macOS only)
-dotnet build -f net10.0-maccatalyst
 ```
 
 ### Run
