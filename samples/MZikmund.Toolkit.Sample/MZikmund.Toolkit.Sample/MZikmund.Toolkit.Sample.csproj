@@ -26,6 +26,14 @@
     </UnoFeatures>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(IsWinAppSdk)' == 'true'">
+    <!-- Skips HotDesign 1.23.0-dev.251's asset collection, which needs a target Uno 7 doesn't define on WinAppSDK (MSB4057). -->
+    <HotDesignUnoAssets>-</HotDesignUnoAssets>
+
+    <!-- Uno 7's WinAppSDK assemblies need WinRT.Runtime 2.3.1; the .NET SDK's default 10.0.26100.57 projection ships 2.2.0 (CS1705). -->
+    <WindowsSdkPackageVersion>10.0.26100.87</WindowsSdkPackageVersion>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\..\..\src\MZikmund.Toolkit.WinUI\MZikmund.Toolkit.WinUI.csproj" />
   </ItemGroup>

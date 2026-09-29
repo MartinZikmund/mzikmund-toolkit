@@ -3,5 +3,6 @@
   </ItemGroup>
   <ItemGroup>
 	<PackageVersion Include="Microsoft.SourceLink.GitHub" Version="8.0.0" />
+	<PackageVersion Include="SkiaSharp.Views.Uno.WinUI" Version="4.151.1" />
   </ItemGroup>
 </Project>
