@@ -49,6 +49,14 @@
     </None>
   </ItemGroup>
 
+  <!--
+    Uno 7 implies SkiaSharp.Views.Uno.WinUI, and the XAML generator chains this library's resources into it,
+    turning an unused package into a hard runtime dependency (its Uno 5.2 build hangs startup, mono/SkiaSharp#5174).
+  -->
+  <ItemGroup Condition="'$(IsWinAppSdk)' != 'true'">
+    <PackageReference Include="SkiaSharp.Views.Uno.WinUI" ExcludeAssets="all" PrivateAssets="all" />
+  </ItemGroup>
+
   <ItemGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
     <!--
     If you encounter this error message:
