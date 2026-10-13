@@ -18,6 +18,7 @@
       <NavigationViewItem Content="App Rating" Tag="AppRating" Icon="Favorite" />
       <NavigationViewItemHeader Content="Extensions" />
       <NavigationViewItem Content="Package Version" Tag="PackageVersion" Icon="Document" />
+      <NavigationViewItem Content="Package Info Generator" Tag="PackageInfo" Icon="Library" />
       <NavigationViewItem Content="ObservableCollection Merge" Tag="ObservableCollectionMerge" Icon="List" />
       <NavigationViewItemHeader Content="Converters" />
       <NavigationViewItem Content="Niche Converters" Tag="Converters" Icon="Switch" />
