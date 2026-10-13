@@ -5,7 +5,13 @@
     See https://aka.platform.uno/using-uno-sdk for more information.
     See https://aka.platform.uno/using-uno-sdk#implicit-packages for more information regarding the Implicit Packages.
   -->
+  <PropertyGroup>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
   <ItemGroup>
     <PackageVersion Include="Xamarin.AndroidX.Core.SplashScreen" Version="1.0.1.16" />
+    <!-- Uno.UI.HotDesign 1.23.0-dev.251 pulls versions built against Uno 6.x, which fail with CS0012 on Uno 7. -->
+    <PackageVersion Include="Uno.Themes.WinUI" Version="9.0.0-dev.26" />
+    <PackageVersion Include="Uno.Toolkit.WinUI" Version="11.0.0-dev.94" />
   </ItemGroup>
 </Project>

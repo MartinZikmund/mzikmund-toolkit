@@ -10,7 +10,7 @@ The repo uses a **single root solution** (`MZikmund.Toolkit.slnx`) that covers a
 - `samples/MZikmund.Toolkit.Sample/MZikmund.Toolkit.Sample` — gallery sample app.
 - `tests/MZikmund.Toolkit.WinUI.Tests` — unit tests for the library, built on `MSTest.Sdk` (Microsoft Testing Platform).
 
-SDK versions are pinned in the root `global.json` (`Uno.Sdk` and `MSTest.Sdk`). The library and samples target Uno 6.x; bumping Uno is a single edit in the root `global.json`.
+SDK versions are pinned in the root `global.json` (`Uno.Sdk` and `MSTest.Sdk`). The library and samples target Uno 7.x; bumping Uno is a single edit in the root `global.json`.
 
 Each project tree (`src/`, `samples/`, `tests/`) keeps its own `Directory.Packages.props`. The tests tree does not enable central package management because `MSTest.Sdk` manages its own dependency versions.
 
