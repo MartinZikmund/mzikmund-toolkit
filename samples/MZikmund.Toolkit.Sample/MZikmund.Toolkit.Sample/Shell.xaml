@@ -27,6 +27,7 @@
       <NavigationViewItem Content="Stable Hash" Tag="StableHash" Icon="Tag" />
       <NavigationViewItemHeader Content="Infrastructure" />
       <NavigationViewItem Content="XamlRoot Provider" Tag="XamlRootProvider" Icon="Page" />
+      <NavigationViewItem Content="Window Shell" Tag="WindowShell" Icon="NewWindow" />
     </NavigationView.MenuItems>
 
     <Frame x:Name="ContentFrame" />
