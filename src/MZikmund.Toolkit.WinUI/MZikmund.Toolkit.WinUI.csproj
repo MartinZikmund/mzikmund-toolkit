@@ -43,6 +43,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="MZikmund.Toolkit.WinUI.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
