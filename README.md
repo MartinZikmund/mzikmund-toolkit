@@ -52,6 +52,12 @@ preferences.SetComplex("user", person);
 var savedPerson = preferences.GetComplex("user", new Person());
 ```
 
+Trimmed heads (a WebAssembly release publish, NativeAOT) disable reflection-based JSON, so complex values there need a source-generated context:
+
+```csharp
+var preferences = new Preferences(MyJsonContext.Default);
+```
+
 ### Dialog Coordinator
 
 ```csharp
