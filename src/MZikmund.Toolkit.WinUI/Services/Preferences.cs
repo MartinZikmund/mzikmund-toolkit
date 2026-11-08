@@ -20,28 +20,30 @@ public class Preferences : IPreferences
     /// (reflection-based) JSON contracts for complex values.
     /// </summary>
     public Preferences()
-        : this(null)
     {
+        _jsonOptions = JsonSerializerOptions.Default;
     }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="Preferences"/> class.
     /// </summary>
-    /// <param name="jsonOptions">
-    /// Options used to resolve the JSON contracts for complex values. Trimmed heads (a WebAssembly
-    /// release publish, NativeAOT) disable reflection-based serialization, so those apps should pass
-    /// options whose <see cref="JsonSerializerOptions.TypeInfoResolver"/> is a source-generated
+    /// <param name="typeInfoResolver">
+    /// Resolves the JSON contracts for complex values. Trimmed heads (a WebAssembly release publish,
+    /// NativeAOT) disable reflection-based serialization, so those apps should pass a source-generated
     /// <c>JsonSerializerContext</c> covering every stored type; otherwise the complex APIs throw.
-    /// Defaults to <see cref="JsonSerializerOptions.Default"/>.
     /// </param>
-    public Preferences(JsonSerializerOptions? jsonOptions)
+    // Not JsonSerializerOptions: apps often register that in DI, which would pick this constructor
+    // and apply their unrelated options, or a null resolver, to stored values.
+    public Preferences(IJsonTypeInfoResolver typeInfoResolver)
     {
-        _jsonOptions = jsonOptions ?? JsonSerializerOptions.Default;
+        ArgumentNullException.ThrowIfNull(typeInfoResolver);
+
+        _jsonOptions = new JsonSerializerOptions { TypeInfoResolver = typeInfoResolver };
     }
 
     // GetTypeInfo carries no trimming annotation, so complex values stay serializable without
     // leaking IL2026 to callers - the resolver decides whether reflection is involved.
-    private JsonTypeInfo<T> GetTypeInfo<T>() => (JsonTypeInfo<T>)_jsonOptions.GetTypeInfo(typeof(T));
+    internal JsonTypeInfo<T> GetTypeInfo<T>() => (JsonTypeInfo<T>)_jsonOptions.GetTypeInfo(typeof(T));
 
     /// <summary>
     /// Retrieves a plain setting from the preferences.
